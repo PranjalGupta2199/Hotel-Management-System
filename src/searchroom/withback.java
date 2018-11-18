@@ -150,6 +150,11 @@ public class withback extends javax.swing.JFrame {
         homeMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         homeMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         homeMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        homeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(homeMenu);
         homeMenu.getAccessibleContext().setAccessibleDescription("HomePage");
 
@@ -157,12 +162,22 @@ public class withback extends javax.swing.JFrame {
         searchMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         searchMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         searchMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        searchMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(searchMenu);
         searchMenu.getAccessibleContext().setAccessibleDescription("Seacrh for Hotels");
 
         profileMenu.setText("MY PROFILE");
         profileMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         profileMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        profileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(profileMenu);
         profileMenu.getAccessibleContext().setAccessibleDescription("View your account details");
 
@@ -192,6 +207,24 @@ public class withback extends javax.swing.JFrame {
         this.dispose();
         new AppStart().setVisible(true);
     }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        new home().setVisible(true);       
+    }//GEN-LAST:event_homeMenuMouseClicked
+
+    private void searchMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMenuMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        new SearchRoomUI().setVisible(true);  
+    }//GEN-LAST:event_searchMenuMouseClicked
+
+    private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileMenuMouseClicked
 
     /**
      * @param args the command line arguments

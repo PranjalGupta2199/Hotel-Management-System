@@ -159,18 +159,33 @@ public class SearchRoomUI extends javax.swing.JFrame {
         homeMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         homeMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         homeMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        homeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(homeMenu);
 
         searchMenu.setText("SEARCH ");
         searchMenu.setToolTipText("Search for hotels");
         searchMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         searchMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        searchMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(searchMenu);
 
         profileMenu.setText("MY PROFILE");
         profileMenu.setToolTipText("View your account details");
         profileMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         profileMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        profileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(profileMenu);
 
         aboutMenu.setText("ABOUT US");
@@ -232,6 +247,24 @@ public class SearchRoomUI extends javax.swing.JFrame {
         evt.consume();   
     }        
     }//GEN-LAST:event_fromTextKeyTyped
+
+    private void searchMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchMenuMouseClicked
+
+    private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        new withback().setVisible(true);
+    }//GEN-LAST:event_profileMenuMouseClicked
+
+    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        new home().setVisible(true);
+    }//GEN-LAST:event_homeMenuMouseClicked
 
     /**
      * @param args the command line arguments
