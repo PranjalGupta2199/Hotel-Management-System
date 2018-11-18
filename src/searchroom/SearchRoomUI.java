@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package searchroom;
+import java.awt.Dimension;
 /**
  *
  * @author PRANJAL
@@ -28,6 +29,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooserDialog1 = new datechooser.beans.DateChooserDialog();
         searchPanel = new javax.swing.JPanel();
         entryPanel = new javax.swing.JPanel();
         locationLabel = new javax.swing.JLabel();
@@ -36,9 +38,9 @@ public class SearchRoomUI extends javax.swing.JFrame {
         roomLabel = new javax.swing.JLabel();
         locationText = new javax.swing.JTextField();
         fromText = new javax.swing.JTextField();
-        toText = new javax.swing.JTextField();
-        roomText = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        fromDate = new datechooser.beans.DateChooserCombo();
+        toDate = new datechooser.beans.DateChooserCombo();
         bckgLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -75,10 +77,6 @@ public class SearchRoomUI extends javax.swing.JFrame {
 
         fromText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        toText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        roomText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,6 +84,16 @@ public class SearchRoomUI extends javax.swing.JFrame {
                 displayResults(evt);
             }
         });
+
+        Dimension size = fromDate.getCalendarPreferredSize();
+        size.width += 90;
+        fromDate.setCalendarPreferredSize(size);
+        fromDate.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
+
+        Dimension size1 = toDate.getCalendarPreferredSize();
+        size1.width += 90;
+        toDate.setCalendarPreferredSize(size1);
+        toDate.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
 
         javax.swing.GroupLayout entryPanelLayout = new javax.swing.GroupLayout(entryPanel);
         entryPanel.setLayout(entryPanelLayout);
@@ -100,11 +108,11 @@ public class SearchRoomUI extends javax.swing.JFrame {
                         .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(fromLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fromText, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toText, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roomText, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(locationText, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                    .addComponent(fromText, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                    .addComponent(fromDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entryPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,19 +122,22 @@ public class SearchRoomUI extends javax.swing.JFrame {
         entryPanelLayout.setVerticalGroup(
             entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(entryPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roomText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entryPanelLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fromLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fromText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,7 +254,9 @@ public class SearchRoomUI extends javax.swing.JFrame {
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JLabel bckgLabel;
     private javax.swing.JMenu contactMenu;
+    private datechooser.beans.DateChooserDialog dateChooserDialog1;
     private javax.swing.JPanel entryPanel;
+    private datechooser.beans.DateChooserCombo fromDate;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JTextField fromText;
     private javax.swing.JMenu homeMenu;
@@ -252,11 +265,10 @@ public class SearchRoomUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu profileMenu;
     private javax.swing.JLabel roomLabel;
-    private javax.swing.JTextField roomText;
     private javax.swing.JButton searchButton;
     private javax.swing.JMenu searchMenu;
     private javax.swing.JPanel searchPanel;
+    private datechooser.beans.DateChooserCombo toDate;
     private javax.swing.JLabel toLabel;
-    private javax.swing.JTextField toText;
     // End of variables declaration//GEN-END:variables
 }

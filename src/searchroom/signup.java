@@ -235,6 +235,9 @@ public class signup extends javax.swing.JFrame {
 
     private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
         // TODO add your handling code here:
+        
+        
+        
         this.setVisible(false);
         this.dispose();
         new AppStart().setVisible(true);
