@@ -5,6 +5,7 @@
  */
 package searchroom;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author PRANJAL
@@ -42,6 +43,8 @@ public class SearchRoomUI extends javax.swing.JFrame {
         toDate = new datechooser.beans.DateChooserCombo();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        fromText1 = new javax.swing.JTextField();
         bckgLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -56,20 +59,36 @@ public class SearchRoomUI extends javax.swing.JFrame {
         searchPanel.setLayout(null);
 
         entryPanel.setBackground(new java.awt.Color(60, 175, 247));
+        entryPanel.setLayout(null);
 
         locationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         locationLabel.setText("LOCATION :");
+        entryPanel.add(locationLabel);
+        locationLabel.setBounds(90, 30, 207, 77);
 
         fromLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         fromLabel.setText("NUMBER OF ROOMS : ");
+        entryPanel.add(fromLabel);
+        fromLabel.setBounds(90, 320, 264, 77);
 
         toLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         toLabel.setText("FROM DATE :");
+        entryPanel.add(toLabel);
+        toLabel.setBounds(90, 140, 207, 77);
 
         roomLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         roomLabel.setText("TO DATE :");
+        entryPanel.add(roomLabel);
+        roomLabel.setBounds(90, 220, 207, 77);
 
         fromText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        fromText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fromTextKeyTyped(evt);
+            }
+        });
+        entryPanel.add(fromText);
+        fromText.setBounds(480, 420, 341, 77);
 
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchButton.setText("SEARCH");
@@ -78,20 +97,28 @@ public class SearchRoomUI extends javax.swing.JFrame {
                 displayResults(evt);
             }
         });
+        entryPanel.add(searchButton);
+        searchButton.setBounds(253, 537, 395, 96);
 
         Dimension size = fromDate.getCalendarPreferredSize();
         size.width += 90;
         fromDate.setCalendarPreferredSize(size);
         fromDate.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
+        entryPanel.add(fromDate);
+        fromDate.setBounds(480, 150, 341, 67);
 
         Dimension size1 = toDate.getCalendarPreferredSize();
         size1.width += 90;
         toDate.setCalendarPreferredSize(size1);
         toDate.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 18));
+        entryPanel.add(toDate);
+        toDate.setBounds(480, 250, 341, 57);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel1.setForeground(java.awt.Color.red);
         jLabel1.setText("Note : Max 3 people in a room");
+        entryPanel.add(jLabel1);
+        jLabel1.setBounds(110, 380, 220, 40);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal" }));
@@ -100,65 +127,22 @@ public class SearchRoomUI extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        entryPanel.add(jComboBox1);
+        jComboBox1.setBounds(480, 60, 340, 40);
 
-        javax.swing.GroupLayout entryPanelLayout = new javax.swing.GroupLayout(entryPanel);
-        entryPanel.setLayout(entryPanelLayout);
-        entryPanelLayout.setHorizontalGroup(
-            entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entryPanelLayout.createSequentialGroup()
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(entryPanelLayout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(entryPanelLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(entryPanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fromLabel))
-                        .addGap(120, 120, 120)
-                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fromText, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(79, 79, 79))
-        );
-        entryPanelLayout.setVerticalGroup(
-            entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entryPanelLayout.createSequentialGroup()
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(entryPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entryPanelLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(entryPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(entryPanelLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fromLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fromText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
-                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("TOTAL GUESTS :");
+        entryPanel.add(jLabel2);
+        jLabel2.setBounds(90, 430, 240, 60);
+
+        fromText1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        fromText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fromText1KeyTyped(evt);
+            }
+        });
+        entryPanel.add(fromText1);
+        fromText1.setBounds(480, 330, 341, 77);
 
         searchPanel.add(entryPanel);
         entryPanel.setBounds(500, 90, 890, 700);
@@ -229,6 +213,26 @@ public class SearchRoomUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void fromText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fromText1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        if (!(Character.isDigit(vchar))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+        evt.consume();   
+    }
+    }//GEN-LAST:event_fromText1KeyTyped
+
+    private void fromTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fromTextKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        if (!(Character.isDigit(vchar))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+        evt.consume();   
+    }        
+    }//GEN-LAST:event_fromTextKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -273,9 +277,11 @@ public class SearchRoomUI extends javax.swing.JFrame {
     private datechooser.beans.DateChooserCombo fromDate;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JTextField fromText;
+    private javax.swing.JTextField fromText1;
     private javax.swing.JMenu homeMenu;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu profileMenu;
