@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package searchroom;
+import javax.swing.JOptionPane;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 /**
  *
  * @author PRANJAL
@@ -37,14 +39,14 @@ public class SearchRoomUI extends javax.swing.JFrame {
         fromLabel = new javax.swing.JLabel();
         toLabel = new javax.swing.JLabel();
         roomLabel = new javax.swing.JLabel();
-        fromText = new javax.swing.JTextField();
+        guestText = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         fromDate = new datechooser.beans.DateChooserCombo();
         toDate = new datechooser.beans.DateChooserCombo();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        locationComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        fromText1 = new javax.swing.JTextField();
+        roomText = new javax.swing.JTextField();
         bckgLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -81,14 +83,14 @@ public class SearchRoomUI extends javax.swing.JFrame {
         entryPanel.add(roomLabel);
         roomLabel.setBounds(90, 220, 207, 77);
 
-        fromText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        fromText.addKeyListener(new java.awt.event.KeyAdapter() {
+        guestText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        guestText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                fromTextKeyTyped(evt);
+                guestTextKeyTyped(evt);
             }
         });
-        entryPanel.add(fromText);
-        fromText.setBounds(480, 420, 341, 77);
+        entryPanel.add(guestText);
+        guestText.setBounds(480, 420, 341, 77);
 
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchButton.setText("SEARCH");
@@ -120,29 +122,29 @@ public class SearchRoomUI extends javax.swing.JFrame {
         entryPanel.add(jLabel1);
         jLabel1.setBounds(110, 380, 220, 40);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        locationComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal", "Kolkata" }));
+        locationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                locationComboBoxActionPerformed(evt);
             }
         });
-        entryPanel.add(jComboBox1);
-        jComboBox1.setBounds(480, 60, 340, 40);
+        entryPanel.add(locationComboBox);
+        locationComboBox.setBounds(480, 60, 340, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("TOTAL GUESTS :");
         entryPanel.add(jLabel2);
         jLabel2.setBounds(90, 430, 240, 60);
 
-        fromText1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        fromText1.addKeyListener(new java.awt.event.KeyAdapter() {
+        roomText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        roomText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                fromText1KeyTyped(evt);
+                roomTextKeyTyped(evt);
             }
         });
-        entryPanel.add(fromText1);
-        fromText1.setBounds(480, 330, 341, 77);
+        entryPanel.add(roomText);
+        roomText.setBounds(480, 330, 341, 77);
 
         searchPanel.add(entryPanel);
         entryPanel.setBounds(500, 90, 890, 700);
@@ -218,17 +220,53 @@ public class SearchRoomUI extends javax.swing.JFrame {
 
     private void displayResults(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayResults
         // TODO add your handling code here:
-        this.setVisible(false);
-        this.dispose();
-        new SearchResultsUI().setVisible(true);
-
+        Object l = locationComboBox.getSelectedItem();
+        String Location = l.toString();
+        
+        int from_date = Integer.parseInt(fromDate.getText().split("/", 0)[0]);
+        int from_month = Integer.parseInt(fromDate.getText().split("/", 0)[1]);
+        int from_year = Integer.parseInt(fromDate.getText().split("/", 0)[2]);
+        int to_date = Integer.parseInt(toDate.getText().split("/", 0)[0]);
+        int to_month = Integer.parseInt(toDate.getText().split("/", 0)[1]);
+        int to_year = Integer.parseInt(toDate.getText().split("/", 0)[2]);
+        
+        int counter_date = 0;
+        int counter_room = 0;
+        try{
+            if (from_year > to_year) throw new Exception();
+            else if (from_month > to_month && from_year == to_year) throw new Exception();
+            else if (from_date > to_date && from_month == to_month && from_year == to_year) throw new Exception();
+            else counter_date ++;
+        }    
+       catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Please enter correct check-in and check-out dates");
+       }
+       
+        try{
+           int tot_room = Integer.parseInt(roomText.getText());
+           int tot_guest = Integer.parseInt(guestText.getText());
+           if (tot_room*3 < tot_guest) throw new Exception();
+           else counter_room ++;
+       }
+       catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Accomodation not possible. Please select more rooms.");          
+       }
+       finally{
+            if (counter_date == 1 && counter_room == 1){
+                this.setVisible(false);
+                this.dispose();
+                new SearchResultsUI().setVisible(true);
+            }
+       }
+        
+        
     }//GEN-LAST:event_displayResults
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_locationComboBoxActionPerformed
 
-    private void fromText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fromText1KeyTyped
+    private void roomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_roomTextKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         if (!(Character.isDigit(vchar))
@@ -236,9 +274,9 @@ public class SearchRoomUI extends javax.swing.JFrame {
             || (vchar == KeyEvent.VK_DELETE)){
         evt.consume();   
     }
-    }//GEN-LAST:event_fromText1KeyTyped
+    }//GEN-LAST:event_roomTextKeyTyped
 
-    private void fromTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fromTextKeyTyped
+    private void guestTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_guestTextKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         if (!(Character.isDigit(vchar))
@@ -246,7 +284,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
             || (vchar == KeyEvent.VK_DELETE)){
         evt.consume();   
     }        
-    }//GEN-LAST:event_fromTextKeyTyped
+    }//GEN-LAST:event_guestTextKeyTyped
 
     private void searchMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMenuMouseClicked
         // TODO add your handling code here:
@@ -309,16 +347,16 @@ public class SearchRoomUI extends javax.swing.JFrame {
     private javax.swing.JPanel entryPanel;
     private datechooser.beans.DateChooserCombo fromDate;
     private javax.swing.JLabel fromLabel;
-    private javax.swing.JTextField fromText;
-    private javax.swing.JTextField fromText1;
+    private javax.swing.JTextField guestText;
     private javax.swing.JMenu homeMenu;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu profileMenu;
     private javax.swing.JLabel roomLabel;
+    private javax.swing.JTextField roomText;
     private javax.swing.JButton searchButton;
     private javax.swing.JMenu searchMenu;
     private javax.swing.JPanel searchPanel;
