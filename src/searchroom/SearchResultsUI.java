@@ -18,8 +18,22 @@ public class SearchResultsUI extends javax.swing.JFrame {
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
+        
     }
-
+        public SearchResultsUI(boolean isAvailable[],String location) {
+        initComponents();
+        this.setSize(1920,1080);
+        this.setResizable(false);
+        displayHotel( isAvailable,location);
+        
+    }
+    
+    public void displayHotel(boolean isAvailable[],String location){
+        Cursor conn = new Cursor ();
+        conn.getData(location);
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -46,7 +46,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         locationComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        roomText = new javax.swing.JTextField();
+        noofroomText = new javax.swing.JTextField();
         bckgLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -123,7 +123,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         jLabel1.setBounds(110, 380, 220, 40);
 
         locationComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal", "Kolkata" }));
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal" }));
         locationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationComboBoxActionPerformed(evt);
@@ -137,14 +137,14 @@ public class SearchRoomUI extends javax.swing.JFrame {
         entryPanel.add(jLabel2);
         jLabel2.setBounds(90, 430, 240, 60);
 
-        roomText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        roomText.addKeyListener(new java.awt.event.KeyAdapter() {
+        noofroomText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        noofroomText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                roomTextKeyTyped(evt);
+                noofroomTextKeyTyped(evt);
             }
         });
-        entryPanel.add(roomText);
-        roomText.setBounds(480, 330, 341, 77);
+        entryPanel.add(noofroomText);
+        noofroomText.setBounds(480, 330, 341, 77);
 
         searchPanel.add(entryPanel);
         entryPanel.setBounds(500, 90, 890, 700);
@@ -229,6 +229,9 @@ public class SearchRoomUI extends javax.swing.JFrame {
         int to_date = Integer.parseInt(toDate.getText().split("/", 0)[0]);
         int to_month = Integer.parseInt(toDate.getText().split("/", 0)[1]);
         int to_year = Integer.parseInt(toDate.getText().split("/", 0)[2]);
+        int tot_room;
+        int tot_guest;
+       
         
         int counter_date = 0;
         int counter_room = 0;
@@ -243,19 +246,29 @@ public class SearchRoomUI extends javax.swing.JFrame {
        }
        
         try{
-           int tot_room = Integer.parseInt(roomText.getText());
-           int tot_guest = Integer.parseInt(guestText.getText());
+            tot_room = Integer.parseInt(noofroomText.getText());
+            tot_guest = Integer.parseInt(guestText.getText());
            if (tot_room*3 < tot_guest) throw new Exception();
            else counter_room ++;
        }
        catch (Exception e){
             JOptionPane.showMessageDialog(null, "Accomodation not possible. Please select more rooms.");          
-       }
+       } 
        finally{
             if (counter_date == 1 && counter_room == 1){
+                /*int[][] roomCount = new int[4][60];
+                for(int i=0;i<4;i++){
+                    for(int j=0;j<60;j++){
+                        roomCount[i][j] = 150;
+                    }
+                }*/
+                boolean isAvailable[];
+                Cursor c1=new Cursor();
+                isAvailable = c1.roomCount("SELECT * FROM 'GuestData' WHERE 'Location' = '"+Location+"'",noofroomText.getText());
+                
                 this.setVisible(false);
                 this.dispose();
-                new SearchResultsUI().setVisible(true);
+                new SearchResultsUI(isAvailable,Location).setVisible(true);
             }
        }
         
@@ -266,7 +279,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_locationComboBoxActionPerformed
 
-    private void roomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_roomTextKeyTyped
+    private void noofroomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noofroomTextKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         if (!(Character.isDigit(vchar))
@@ -274,7 +287,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
             || (vchar == KeyEvent.VK_DELETE)){
         evt.consume();   
     }
-    }//GEN-LAST:event_roomTextKeyTyped
+    }//GEN-LAST:event_noofroomTextKeyTyped
 
     private void guestTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_guestTextKeyTyped
         // TODO add your handling code here:
@@ -354,9 +367,9 @@ public class SearchRoomUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JTextField noofroomText;
     private javax.swing.JMenu profileMenu;
     private javax.swing.JLabel roomLabel;
-    private javax.swing.JTextField roomText;
     private javax.swing.JButton searchButton;
     private javax.swing.JMenu searchMenu;
     private javax.swing.JPanel searchPanel;
