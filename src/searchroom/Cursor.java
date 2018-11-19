@@ -28,8 +28,7 @@ public class Cursor {
             // db parameters
             String url = "jdbc:sqlite:C:\\Users\\Smit\\Desktop\\Hotel-Management-System-develop\\Data\\dump.sqlite";
             // create a connection to the database
-            conn = DriverManager.getConnection(url);
-            
+            conn = DriverManager.getConnection(url);            
             Statement stmt = conn.createStatement();
             try{
                 ResultSet rs = stmt.executeQuery(query);
@@ -135,32 +134,38 @@ public class Cursor {
             String url = "jdbc:sqlite:C:\\Users\\Smit\\Desktop\\Hotel-Management-System-develop\\Data\\dump.sqlite";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
-            
+            //if(conn !=  null) System.out.println("hjkl");
             Statement stmt = conn.createStatement();
+            System.out.println(query);
             try{
                 ResultSet rs = stmt.executeQuery(query);
-                System.out.println("Connection to SQLite has been established.");
+                //System.out.println("Connection to SQLite has been established.");
                 int counter = 0;
+               //System.out.println(rs.next());
+               int noofrooms_int = Integer.parseInt(noofroomText);
+               
                 
-            while (rs.next() == true){
-                System.out.println("entred into rs");
+                  
+                   
+              
+            while (rs.next()){                
                 //int id = rs.getInt("id");
                 String fDate = rs.getString("FromDate");
                 String tDate = rs.getString("ToDate");
                 String hName = rs.getString("HotelName");
-                int noofrooms = rs.getInt("Rooms");
-
+                int noofrooms =rs.getInt("Rooms");
+               //System.out.println(fDate + tDate + hName);
                 
                 int rowno=0;
                 int roomcount_index=0;
                 
                 for(int o=0;o<20;o++){
                     if(hotellist[o].equals(hName) == true){
-                        rowno=o;
+                        rowno=o+1;
                         break;
                     }
                 }
-                
+                System.out.println(rowno);
                 int temp = (rowno)%4;
                     if(temp == 1){
                         roomcount_index = 0;                    
@@ -192,22 +197,21 @@ public class Cursor {
                 
                 for(int p=startindex;p<=endindex;p++){
                     
+                    roomcount[roomcount_index][p] -= noofrooms;
                     if(roomcount[roomcount_index][p] < min){
                         min = roomcount[roomcount_index][p];
                     }
-                    //roomcount[roomcount_index][p] -= noofrooms;
-                    
                 }
-                int noofrooms_int = Integer.parseInt(noofroomText);
+                
                 if(min < noofrooms_int){
                     availabilityCheck[roomcount_index] = false;
                 }
-                else {
+                
                     //availabilityCheck[roomcount_index] = true;
-                    for(int p=startindex;p<=endindex;p++)
-                    roomcount[roomcount_index][p] -= noofrooms;
-                }
-                counter ++ ;
+                   /* for(int p=startindex;p<=endindex;p++)
+                    roomcount[roomcount_index][p] -= noofrooms;*/
+                
+                //counter ++ ;
         // print the results
                 //System.out.format("%s, %s\n", firstName, lastName);
                 }
@@ -218,12 +222,13 @@ public class Cursor {
                 System.out.println(e.getMessage());
             }
  
-            finally{
-                
+            finally{               
                 stmt.close();
             }
             
-        } catch (SQLException e) {
+        }
+        
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
             for(int i=0;i<4;i++)

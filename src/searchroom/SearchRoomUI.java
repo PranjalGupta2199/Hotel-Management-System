@@ -248,11 +248,11 @@ public class SearchRoomUI extends javax.swing.JFrame {
         try{
             tot_room = Integer.parseInt(noofroomText.getText());
             tot_guest = Integer.parseInt(guestText.getText());
-           if (tot_room*3 < tot_guest) throw new Exception();
+           if ((tot_room*3 < tot_guest) || (tot_room >150)) throw new Exception();
            else counter_room ++;
        }
        catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Accomodation not possible. Please select more rooms.");          
+            JOptionPane.showMessageDialog(null, "Accomodation not possible.");          
        } 
        finally{
             if (counter_date == 1 && counter_room == 1){
@@ -262,9 +262,10 @@ public class SearchRoomUI extends javax.swing.JFrame {
                         roomCount[i][j] = 150;
                     }
                 }*/
+                
                 boolean isAvailable[];
                 Cursor c1=new Cursor();
-                isAvailable = c1.roomCount("SELECT * FROM 'GuestData' WHERE 'Location' = '"+Location+"'",noofroomText.getText());
+                isAvailable = c1.roomCount("SELECT * FROM 'GuestData' WHERE Location = '"+Location+"'",noofroomText.getText());
                 
                 this.setVisible(false);
                 this.dispose();
