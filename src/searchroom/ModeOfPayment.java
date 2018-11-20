@@ -1,6 +1,7 @@
 package searchroom;
 
 import javax.swing.JOptionPane;
+import static searchroom.home.Username;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,10 @@ public class ModeOfPayment extends javax.swing.JFrame {
     /**
      * Creates new form ModeOfPayment
      */
-    public ModeOfPayment() {
+    static String Username;
+    
+    public ModeOfPayment(String name) {
+        Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
@@ -270,7 +274,7 @@ public class ModeOfPayment extends javax.swing.JFrame {
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new SearchResultsUI().setVisible(true);
+        new SearchResultsUI(Username).setVisible(true);
     }//GEN-LAST:event_backButtonMouseClicked
 
     private void MakePaymentBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MakePaymentBMouseClicked
@@ -299,31 +303,31 @@ public class ModeOfPayment extends javax.swing.JFrame {
     private void HomeMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new home().setVisible(true);
+        new home(Username).setVisible(true);
     }//GEN-LAST:event_HomeMMouseClicked
 
     private void SearchMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new SearchRoomUI().setVisible(true);
+        new SearchRoomUI(Username).setVisible(true);
     }//GEN-LAST:event_SearchMMouseClicked
 
     private void MyProfileMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyProfileMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new withback().setVisible(true);
+        new withback(Username).setVisible(true);
     }//GEN-LAST:event_MyProfileMMouseClicked
 
     private void AboutUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new AboutUs().setVisible(true);
+        new AboutUs(Username).setVisible(true);
     }//GEN-LAST:event_AboutUsMMouseClicked
 
     private void ContactUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactUsMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new ContactUs().setVisible(true);
+        new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_ContactUsMMouseClicked
 
     /**
@@ -356,7 +360,7 @@ public class ModeOfPayment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModeOfPayment().setVisible(true);
+                new ModeOfPayment(Username).setVisible(true);
             }
         });
     }

@@ -15,12 +15,17 @@ public class withback extends javax.swing.JFrame {
     /**
      * Creates new form withback
      */
-    public withback() {
+    static String Username;
+    
+    public withback(String name) {
+        this.Username = name;
+        System.out.println(Username);
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
+        displayInfo(Username);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,8 +51,8 @@ public class withback extends javax.swing.JFrame {
         valueofusernameLabel = new javax.swing.JLabel();
         valueofemailidLabel = new javax.swing.JLabel();
         valueofmobileLabel = new javax.swing.JLabel();
-        valueofaddressLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        valueofaddressLabel = new java.awt.TextArea();
         bckgimageLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -75,53 +80,34 @@ public class withback extends javax.swing.JFrame {
         profilePanel.setLayout(null);
 
         entryPanel.setBackground(new java.awt.Color(255, 201, 175));
-        entryPanel.setLayout(null);
 
         usernameLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         usernameLabel.setText("Username :");
-        entryPanel.add(usernameLabel);
-        usernameLabel.setBounds(164, 40, 217, 59);
 
         emailidLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         emailidLabel.setText("EmailId     :");
-        entryPanel.add(emailidLabel);
-        emailidLabel.setBounds(170, 130, 217, 59);
 
         mobileLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         mobileLabel.setText("Mobile       :");
-        entryPanel.add(mobileLabel);
-        mobileLabel.setBounds(170, 220, 215, 59);
 
         addressLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         addressLabel.setText("Address     :");
-        entryPanel.add(addressLabel);
-        addressLabel.setBounds(170, 310, 215, 59);
 
         viewtransactionsButton.setBackground(new java.awt.Color(153, 255, 153));
         viewtransactionsButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         viewtransactionsButton.setText("View Transactions");
-        entryPanel.add(viewtransactionsButton);
-        viewtransactionsButton.setBounds(620, 530, 380, 60);
 
         userpicLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/searchroom/img1.jpg"))); // NOI18N
-        entryPanel.add(userpicLabel);
-        userpicLabel.setBounds(950, 50, 220, 190);
 
-        valueofusernameLabel.setOpaque(true);
-        entryPanel.add(valueofusernameLabel);
-        valueofusernameLabel.setBounds(470, 40, 310, 60);
+        valueofusernameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        valueofusernameLabel.setOpaque(false);
 
-        valueofemailidLabel.setOpaque(true);
-        entryPanel.add(valueofemailidLabel);
-        valueofemailidLabel.setBounds(470, 130, 310, 60);
+        valueofemailidLabel.setBackground(new java.awt.Color(255, 255, 255));
+        valueofemailidLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        valueofemailidLabel.setOpaque(false);
 
-        valueofmobileLabel.setOpaque(true);
-        entryPanel.add(valueofmobileLabel);
-        valueofmobileLabel.setBounds(470, 210, 310, 70);
-
-        valueofaddressLabel.setOpaque(true);
-        entryPanel.add(valueofaddressLabel);
-        valueofaddressLabel.setBounds(470, 320, 320, 160);
+        valueofmobileLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        valueofmobileLabel.setOpaque(false);
 
         logoutButton.setBackground(new java.awt.Color(255, 0, 0));
         logoutButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -131,8 +117,78 @@ public class withback extends javax.swing.JFrame {
                 logoutButtonMouseClicked(evt);
             }
         });
-        entryPanel.add(logoutButton);
-        logoutButton.setBounds(210, 530, 340, 60);
+
+        valueofaddressLabel.setEditable(false);
+        valueofaddressLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        javax.swing.GroupLayout entryPanelLayout = new javax.swing.GroupLayout(entryPanel);
+        entryPanel.setLayout(entryPanelLayout);
+        entryPanelLayout.setHorizontalGroup(
+            entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entryPanelLayout.createSequentialGroup()
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(viewtransactionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emailidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(83, 83, 83)
+                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(valueofemailidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valueofusernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valueofmobileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valueofaddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
+                        .addGap(170, 170, 170)
+                        .addComponent(userpicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60))
+        );
+        entryPanelLayout.setVerticalGroup(
+            entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entryPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(userpicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(emailidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addComponent(valueofusernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(valueofemailidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(valueofmobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entryPanelLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(mobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(entryPanelLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(valueofaddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(83, 83, 83)
+                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewtransactionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         profilePanel.add(entryPanel);
         entryPanel.setBounds(360, 110, 1230, 620);
@@ -211,6 +267,17 @@ public class withback extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void displayInfo(String UserID){
+        Cursor conn = new Cursor();
+        String [] info;
+        info = conn.getUserInfo(Username);
+        
+        valueofusernameLabel.setText(info[0]);
+        valueofemailidLabel.setText(info[1]);
+        valueofmobileLabel.setText(info[2]);
+        valueofaddressLabel.setText(info[3]);
+    }
+    
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
@@ -222,14 +289,14 @@ public class withback extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new home().setVisible(true);       
+        new home(Username).setVisible(true);       
     }//GEN-LAST:event_homeMenuMouseClicked
 
     private void searchMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMenuMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new SearchRoomUI().setVisible(true);  
+        new SearchRoomUI(Username).setVisible(true);  
     }//GEN-LAST:event_searchMenuMouseClicked
 
     private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
@@ -239,13 +306,13 @@ public class withback extends javax.swing.JFrame {
     private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new AboutUs().setVisible(true);
+        new AboutUs(Username).setVisible(true);
     }//GEN-LAST:event_aboutMenuMouseClicked
 
     private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new ContactUs().setVisible(true);
+        new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
@@ -278,7 +345,7 @@ public class withback extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new withback().setVisible(true);
+                new withback(Username).setVisible(true);
             }
         });
     }
@@ -304,7 +371,7 @@ public class withback extends javax.swing.JFrame {
     private javax.swing.JMenu searchMenu;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel userpicLabel;
-    private javax.swing.JLabel valueofaddressLabel;
+    private java.awt.TextArea valueofaddressLabel;
     private javax.swing.JLabel valueofemailidLabel;
     private javax.swing.JLabel valueofmobileLabel;
     private javax.swing.JLabel valueofusernameLabel;

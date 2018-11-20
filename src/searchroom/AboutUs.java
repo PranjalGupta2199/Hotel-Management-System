@@ -5,6 +5,8 @@
  */
 package searchroom;
 
+import static searchroom.home.Username;
+
 /**
  *
  * @author medet
@@ -14,7 +16,10 @@ public class AboutUs extends javax.swing.JFrame {
     /**
      * Creates new form AboutUs
      */
-    public AboutUs() {
+    static String Username;
+    
+    public AboutUs(String name) {
+        Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);  
@@ -177,19 +182,19 @@ public class AboutUs extends javax.swing.JFrame {
     private void HomeMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new home().setVisible(true);
+        new home(Username).setVisible(true);
     }//GEN-LAST:event_HomeMMouseClicked
 
     private void SearchMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new SearchRoomUI().setVisible(true);
+        new SearchRoomUI(Username).setVisible(true);
     }//GEN-LAST:event_SearchMMouseClicked
 
     private void MyProfileMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyProfileMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new withback().setVisible(true);
+        new withback(Username).setVisible(true);
     }//GEN-LAST:event_MyProfileMMouseClicked
 
     private void AboutUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMMouseClicked
@@ -199,7 +204,7 @@ public class AboutUs extends javax.swing.JFrame {
     private void ContactUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactUsMMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new ContactUs().setVisible(true);
+        new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_ContactUsMMouseClicked
 
     /**
@@ -232,7 +237,7 @@ public class AboutUs extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AboutUs().setVisible(true);
+                new AboutUs(Username).setVisible(true);
             }
         });
     }

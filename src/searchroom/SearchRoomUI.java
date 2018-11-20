@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import static searchroom.home.Username;
 /**
  *
  * @author PRANJAL
@@ -17,7 +18,10 @@ public class SearchRoomUI extends javax.swing.JFrame {
     /**
      * Creates new form SearchRoomUI
      */
-    public SearchRoomUI() {
+    static String Username;
+    
+    public SearchRoomUI(String name) {
+        Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
@@ -279,7 +283,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
                 
                 this.setVisible(false);
                 this.dispose();
-                new SearchResultsUI(isAvailable,Location).setVisible(true);
+                new SearchResultsUI(Username, isAvailable,Location).setVisible(true);
             }
        }
         
@@ -318,26 +322,26 @@ public class SearchRoomUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new withback().setVisible(true);
+        new withback(Username).setVisible(true);
     }//GEN-LAST:event_profileMenuMouseClicked
 
     private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new home().setVisible(true);
+        new home(Username).setVisible(true);
     }//GEN-LAST:event_homeMenuMouseClicked
 
     private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new AboutUs().setVisible(true);
+        new AboutUs(Username).setVisible(true);
     }//GEN-LAST:event_aboutMenuMouseClicked
 
     private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new ContactUs().setVisible(true);
+        new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
@@ -370,7 +374,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomUI().setVisible(true);
+                new SearchRoomUI(Username).setVisible(true);
             }
         });
     }

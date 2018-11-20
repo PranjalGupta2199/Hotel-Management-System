@@ -205,14 +205,12 @@ public class AppStart extends javax.swing.JFrame {
         if(usernameField.getText().isEmpty()||passwordField.getText().isEmpty()){}
         else{
         Cursor c = new Cursor();
-        if(c.login_page(usernameField.getText(),passwordField.getText())==1)
-        {
-        this.setVisible(false);
-        this.dispose();
-        new home().setVisible(true);
+        if(c.login_page(usernameField.getText(),passwordField.getText())==1){
+            this.setVisible(false);
+            this.dispose();
+            new home(usernameField.getText()).setVisible(true);
         }
-        else
-        JOptionPane.showMessageDialog(null, "Invalid Username Or Password");
+        else JOptionPane.showMessageDialog(null, "Invalid Username Or Password");
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 

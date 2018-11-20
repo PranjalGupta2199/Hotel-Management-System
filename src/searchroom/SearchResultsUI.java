@@ -5,6 +5,8 @@
  */
 package searchroom;
 
+import static searchroom.home.Username;
+
 /**
  *
  * @author PRANJAL
@@ -14,13 +16,16 @@ public class SearchResultsUI extends javax.swing.JFrame {
     /**
      * Creates new form SearchResultsUI
      */
-    public SearchResultsUI() {
+    static String Username;
+    public SearchResultsUI(String name) {
+        Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
         
     }
-        public SearchResultsUI(boolean isAvailable[],String location) {
+    public SearchResultsUI(String name, boolean isAvailable[],String location) {
+        Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
@@ -176,7 +181,7 @@ public class SearchResultsUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new SearchRoomUI().setVisible(true);
+        new SearchRoomUI(Username).setVisible(true);
         
     }//GEN-LAST:event_backButtonMouseClicked
 
@@ -184,19 +189,19 @@ public class SearchResultsUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
-        new ModeOfPayment().setVisible(true);       
+        new ModeOfPayment(Username).setVisible(true);       
     }//GEN-LAST:event_payementButtonMouseClicked
 
     private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new AboutUs().setVisible(true);
+        new AboutUs(Username).setVisible(true);
     }//GEN-LAST:event_aboutMenuMouseClicked
 
     private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new ContactUs().setVisible(true);
+        new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
@@ -229,7 +234,7 @@ public class SearchResultsUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchResultsUI().setVisible(true);
+                new SearchResultsUI(Username).setVisible(true);
             }
         });
     }
