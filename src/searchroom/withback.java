@@ -118,6 +118,7 @@ public class withback extends javax.swing.JFrame {
             }
         });
 
+        valueofaddressLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         valueofaddressLabel.setEditable(false);
         valueofaddressLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
@@ -144,12 +145,16 @@ public class withback extends javax.swing.JFrame {
                                     .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(83, 83, 83)
                         .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(valueofemailidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valueofusernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valueofmobileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valueofaddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
-                        .addGap(170, 170, 170)
-                        .addComponent(userpicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addGroup(entryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(valueofemailidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(valueofusernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(valueofmobileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(170, 170, 170)
+                                .addComponent(userpicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(entryPanelLayout.createSequentialGroup()
+                                .addComponent(valueofaddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(219, 219, 219)))))
                 .addGap(60, 60, 60))
         );
         entryPanelLayout.setVerticalGroup(

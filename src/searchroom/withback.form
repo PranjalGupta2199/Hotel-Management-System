@@ -229,13 +229,20 @@
                               </Group>
                               <EmptySpace min="83" pref="83" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="valueofemailidLabel" max="32767" attributes="0"/>
-                                  <Component id="valueofusernameLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="valueofmobileLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="valueofaddressLabel" pref="359" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="valueofemailidLabel" pref="359" max="32767" attributes="0"/>
+                                          <Component id="valueofusernameLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="valueofmobileLabel" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="170" pref="170" max="-2" attributes="0"/>
+                                      <Component id="userpicLabel" min="-2" pref="220" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="valueofaddressLabel" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="170" pref="170" max="-2" attributes="0"/>
-                              <Component id="userpicLabel" min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -395,6 +402,9 @@
             </Component>
             <Component class="java.awt.TextArea" name="valueofaddressLabel">
               <Properties>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Text Cursor"/>
+                </Property>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>

@@ -40,7 +40,7 @@ public class Cursor {
                 if (rst.getString("Username").equals(Username) == true){
                 
                     String emailid = rst.getString("EmailID"); 
-                    String contact = Integer.toString(rst.getInt("Contact"));
+                    String contact = rst.getString("Contact");
                     String address = rst.getString("Address");
                 
                     resultArray[1] = emailid;
