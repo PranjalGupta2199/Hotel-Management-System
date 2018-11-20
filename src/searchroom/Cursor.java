@@ -21,6 +21,151 @@ import java.util.Calendar;
 import java.sql.*;
 
 public class Cursor {
+
+    public  int login_page(String user,String pass) {
+        Connection conn = null;
+        
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from SignUp");
+            while(rs.next()){
+                String s1 = rs.getString("Username"); 
+                String s2 = rs.getString("Password");
+                if(s1.equals(user)==true && s2.equals(pass)==true){
+                    
+                    return 1;                    
+                }
+            }          
+            System.out.println("Connection to SQLite has been established.");
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+           
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return 0;
+    }
+ 
+    public static int popup_message(String user) {
+        Connection conn = null;
+        int flag =0;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from SignUp");
+            while(rs.next()){
+                String s = rs.getString("Username");
+                if(s.equals(user)==true){
+                    JOptionPane.showMessageDialog(null, "Same Username Try again");
+                    return 1;                    
+                }
+            }          
+            System.out.println("Connection to SQLite has been established.");
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+           
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return 0;
+    }
+
+    public static void update_table(String query) {
+        Connection conn = null;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            
+            stmt.execute(query);           
+            System.out.println("Connection to SQLite has been established.");
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+        static int[][] d  = new int[][]
+                {
+                        {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+                        {1, 2, 3, 4, 0, 6, 7, 8, 9, 5},
+                        {2, 3, 4, 0, 1, 7, 8, 9, 5, 6},
+                        {3, 4, 0, 1, 2, 8, 9, 5, 6, 7},
+                        {4, 0, 1, 2, 3, 9, 5, 6, 7, 8},
+                        {5, 9, 8, 7, 6, 0, 4, 3, 2, 1},
+                        {6, 5, 9, 8, 7, 1, 0, 4, 3, 2},
+                        {7, 6, 5, 9, 8, 2, 1, 0, 4, 3},
+                        {8, 7, 6, 5, 9, 3, 2, 1, 0, 4},
+                        {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
+                };
+        static int[][] p = new int[][]
+                {
+                        {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+                        {1, 5, 7, 6, 2, 8, 3, 0, 9, 4},
+                        {5, 8, 0, 3, 7, 9, 6, 1, 4, 2},
+                        {8, 9, 1, 6, 0, 4, 3, 5, 2, 7},
+                        {9, 4, 5, 3, 1, 2, 6, 8, 7, 0},
+                        {4, 2, 8, 6, 5, 7, 3, 9, 0, 1},
+                        {2, 7, 9, 3, 8, 0, 6, 4, 1, 5},
+                        {7, 0, 4, 6, 9, 1, 3, 2, 5, 8}
+                };
+        static int[] inv = {0, 4, 3, 2, 1, 5, 6, 7, 8, 9};
+
+        public static boolean validateVerhoeff(String num){
+            int c = 0;
+            int[] myArray = StringToReversedIntArray(num);
+            for (int i = 0; i < myArray.length; i++){
+                c = d[c][p[(i % 8)][myArray[i]]];
+            }
+
+            return (c == 0);
+        }
+        private static int[] StringToReversedIntArray(String num){
+            int[] myArray = new int[num.length()];
+            for(int i = 0; i < num.length(); i++){
+                myArray[i] = Integer.parseInt(num.substring(i, i + 1));
+            }
+            myArray = Reverse(myArray);
+            return myArray;
+        }
+        private static int[] Reverse(int[] myArray){
+            int[] reversed = new int[myArray.length];
+            for(int i = 0; i < myArray.length ; i++){
+                reversed[i] = myArray[myArray.length - (i + 1)];
+            }
+            return reversed;
+        } 
+        
     public static void insert(String query,String noofroomText) {
         Connection conn = null;
         

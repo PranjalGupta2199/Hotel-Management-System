@@ -5,10 +5,17 @@
  */
 package searchroom;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Saarthak Jain
  */
+
 public class signup extends javax.swing.JFrame {
 
     /**
@@ -213,7 +220,7 @@ public class signup extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/searchroom/bckg3.jpg"))); // NOI18N
         signup_mainPanel.add(jLabel5);
-        jLabel5.setBounds(0, -10, 1920, 1080);
+        jLabel5.setBounds(0, 0, 1920, 1080);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,13 +241,41 @@ public class signup extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextActionPerformed
 
     private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
-        // TODO add your handling code here:
-        
-        
+
+        Cursor conn = new Cursor();
+        if(usernameText.getText().isEmpty()||passwordField.getText().isEmpty()||confirmPassword.getText().isEmpty()||contactText.getText().isEmpty()||emailText.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null, "All the fields are not present");
+        }
+        else{
+        if (conn.popup_message(usernameText.getText()) == 1) {}
+        else {
+            if(passwordField.getText().equals(confirmPassword.getText())==false){
+                JOptionPane.showMessageDialog(null, "password are not same");
+            }
+            if(passwordField.getText().equals(confirmPassword.getText())==true){    
+                if(contactText.getText().length()==10)
+                {
+                if(emailText.getText().indexOf("@")!=-1 && emailText.getText().indexOf(".")!=-1)
+                {
+                conn.update_table("insert into SignUp(Username,Password,ConfirmPassword,Contact,DOB,EmailID,Address) values ('"+usernameText.getText()+"','"+passwordField.getText()+"','"+confirmPassword.getText()+"','"+contactText.getText()+"','"+dobText.getText()+"','"+emailText.getText()+"','"+addressText.getText()+"')");
+                
         
         this.setVisible(false);
-        this.dispose();
+        this.dispose();        
         new AppStart().setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Invalid Email ID");
+                }
+                }
+                else
+                {
+                       JOptionPane.showMessageDialog(null, "Invalid Contact number,Please type 10 digits");
+                }
+            }
+            }
+        }
 
     }//GEN-LAST:event_signUpButtonMouseClicked
 

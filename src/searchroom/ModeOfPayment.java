@@ -1,5 +1,7 @@
 package searchroom;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,7 +45,9 @@ public class ModeOfPayment extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        AadharCardTf = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JPasswordField();
         BackImageL = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         HomeM = new javax.swing.JMenu();
@@ -76,13 +80,18 @@ public class ModeOfPayment extends javax.swing.JFrame {
         CreditCardNumL.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         CreditCardNumL.setText("CREDIT CARD NUMBER :");
 
-        CreditCardNumTf.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        CreditCardNumTf.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         TotalAmountL.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         TotalAmountL.setText("TOTAL AMOUNT :");
 
         MakePaymentB.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         MakePaymentB.setText("Confirm Payment");
+        MakePaymentB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MakePaymentBMouseClicked(evt);
+            }
+        });
         MakePaymentB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MakePaymentBActionPerformed(evt);
@@ -102,9 +111,17 @@ public class ModeOfPayment extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setText("The amount will be displayed here");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/searchroom/bckg7.jpg"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("AADHAR CARD NUMBER");
+
+        AadharCardTf.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+
+        PasswordField.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
         ContentPanel.setLayout(ContentPanelLayout);
@@ -121,28 +138,30 @@ public class ModeOfPayment extends javax.swing.JFrame {
                         .addGap(176, 176, 176)
                         .addComponent(MakePaymentB))
                     .addGroup(ContentPanelLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(98, 98, 98)
                         .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(ContentPanelLayout.createSequentialGroup()
+                                    .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CreditCardNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CvvnumL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(28, 28, 28)
+                                    .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CreditCardNameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                                        .addComponent(PasswordField)))
+                                .addGroup(ContentPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                    .addComponent(AadharCardTf, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(ContentPanelLayout.createSequentialGroup()
                                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CreditCardNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CvvnumL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CreditCardNameTf)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)))
-                            .addGroup(ContentPanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                    .addComponent(CreditCardNumL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TotalAmountL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28)
                                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ContentPanelLayout.createSequentialGroup()
-                                        .addComponent(CreditCardNumL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CreditCardNumTf, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(ContentPanelLayout.createSequentialGroup()
-                                        .addComponent(TotalAmountL, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(251, 251, 251)
+                                    .addComponent(CreditCardNumTf, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(175, 175, 175)
                         .addComponent(jLabel8)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
@@ -151,32 +170,32 @@ public class ModeOfPayment extends javax.swing.JFrame {
             .addGroup(ContentPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(MakePaymentTitleL, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContentPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ContentPanelLayout.createSequentialGroup()
-                        .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ContentPanelLayout.createSequentialGroup()
-                                .addComponent(CreditCardNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CvvnumL, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(ContentPanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(CreditCardNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13)
                         .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CreditCardNumTf, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CreditCardNumL, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
+                            .addComponent(CreditCardNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreditCardNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CvvnumL, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreditCardNumL, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreditCardNumTf, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TotalAmountL, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)))
+                        .addGap(29, 29, 29)
+                        .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AadharCardTf, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MakePaymentB)
                     .addComponent(backButton))
@@ -240,6 +259,29 @@ public class ModeOfPayment extends javax.swing.JFrame {
         new SearchResultsUI().setVisible(true);
     }//GEN-LAST:event_backButtonMouseClicked
 
+    private void MakePaymentBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MakePaymentBMouseClicked
+            // TODO add your handling code here:
+            Cursor c = new Cursor();
+            if(CreditCardNameTf.getText().isEmpty()||AadharCardTf.getText().isEmpty()||CreditCardNumTf.getText().isEmpty()||PasswordField.getText().isEmpty()){
+               JOptionPane.showMessageDialog(null, "All of the entries are not filled");
+            }            
+            
+            else{
+                if(PasswordField.getText().length()!=3){
+                    JOptionPane.showMessageDialog(null, "CVV Number is incorrect");
+                }
+                else if(c.validateVerhoeff(AadharCardTf.getText())==false){
+                    JOptionPane.showMessageDialog(null, "Invalid Aadhar Card Number");
+                }
+                else if(CreditCardNumTf.getText().length()!=16){
+                    JOptionPane.showMessageDialog(null, "Invalid Credit Card Number");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Your transaction has been successfully completed");
+                }
+            }
+    }//GEN-LAST:event_MakePaymentBMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +318,7 @@ public class ModeOfPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AadharCardTf;
     private javax.swing.JMenu AboutUsM;
     private javax.swing.JPanel BackGroungPanel;
     private javax.swing.JLabel BackImageL;
@@ -290,12 +333,13 @@ public class ModeOfPayment extends javax.swing.JFrame {
     private javax.swing.JButton MakePaymentB;
     private javax.swing.JLabel MakePaymentTitleL;
     private javax.swing.JMenu MyProfileM;
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JMenu SearchM;
     private javax.swing.JLabel TotalAmountL;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }

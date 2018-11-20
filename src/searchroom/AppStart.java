@@ -5,6 +5,8 @@
  */
 package searchroom;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PRANJAL
@@ -200,10 +202,18 @@ public class AppStart extends javax.swing.JFrame {
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
         // Add password verification 
+        if(usernameField.getText().isEmpty()||passwordField.getText().isEmpty()){}
+        else{
+        Cursor c = new Cursor();
+        if(c.login_page(usernameField.getText(),passwordField.getText())==1)
+        {
         this.setVisible(false);
         this.dispose();
         new home().setVisible(true);
-        
+        }
+        else
+        JOptionPane.showMessageDialog(null, "Invalid Username Or Password");
+        }
     }//GEN-LAST:event_loginButtonMouseClicked
 
     /**
