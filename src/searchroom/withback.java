@@ -96,6 +96,11 @@ public class withback extends javax.swing.JFrame {
         viewtransactionsButton.setBackground(new java.awt.Color(153, 255, 153));
         viewtransactionsButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         viewtransactionsButton.setText("View Transactions");
+        viewtransactionsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewtransactionsButtonMouseClicked(evt);
+            }
+        });
 
         userpicLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/searchroom/img1.jpg"))); // NOI18N
 
@@ -319,6 +324,12 @@ public class withback extends javax.swing.JFrame {
         this.dispose();
         new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_contactMenuMouseClicked
+
+    private void viewtransactionsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewtransactionsButtonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ViewTranscations(Username).setVisible(true);
+    }//GEN-LAST:event_viewtransactionsButtonMouseClicked
 
     /**
      * @param args the command line arguments

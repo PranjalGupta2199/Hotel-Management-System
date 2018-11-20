@@ -22,6 +22,45 @@ import java.sql.*;
 
 public class Cursor {
 
+    public String[][] getTransactions(String Username){
+        Connection conn = null;
+        String[][] resultArray = new String[2000][7];
+
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            //String query = "select * from SignUp where 'Username' = '"+Username+"'";
+            String query = "select * from GuestData";
+            ResultSet rst = stmt.executeQuery(query);
+            
+            int counter = 0;
+            
+            while (rst.next()){
+                if (rst.getString("Username").equals(Username) == true) {
+                    String temp[] = new String[7];
+                    temp[0] = rst.getString(1);
+                    temp[1] = rst.getString(2);
+                    temp[2] = rst.getString(4);
+                    temp[3] = rst.getString(5);
+                    temp[4] = rst.getString(6);
+                    temp[5] = rst.getString(7);
+                    temp[6] = rst.getString(9);
+                
+                    resultArray[counter] = temp;
+                    counter ++;
+                    System.out.println(counter);
+                
+                }
+                
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return resultArray;
+    }
+    
     public String[] getUserInfo(String Username){
         Connection conn = null;
         String[] resultArray = new String[4];

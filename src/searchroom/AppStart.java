@@ -76,14 +76,14 @@ public class AppStart extends javax.swing.JFrame {
         usernameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         usernameLabel.setText("Username :");
 
-        usernameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usernameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
             }
         });
 
-        passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
@@ -155,7 +155,7 @@ public class AppStart extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
