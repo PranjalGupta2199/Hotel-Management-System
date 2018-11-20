@@ -16,6 +16,8 @@ public class ContactUs extends javax.swing.JFrame {
      */
     public ContactUs() {
         initComponents();
+        this.setSize(1920,1080);
+        this.setResizable(false);          
     }
 
     /**
@@ -109,26 +111,51 @@ public class ContactUs extends javax.swing.JFrame {
         HomeM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         HomeM.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         HomeM.setPreferredSize(new java.awt.Dimension(384, 24));
+        HomeM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HomeMMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(HomeM);
 
         SearchM.setText("SEARCH");
         SearchM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         SearchM.setPreferredSize(new java.awt.Dimension(384, 24));
+        SearchM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchMMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(SearchM);
 
         MyProfileM.setText("MY PROFILE");
         MyProfileM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         MyProfileM.setPreferredSize(new java.awt.Dimension(384, 24));
+        MyProfileM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MyProfileMMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(MyProfileM);
 
         AboutUsM.setText("ABOUT US");
         AboutUsM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         AboutUsM.setPreferredSize(new java.awt.Dimension(384, 24));
+        AboutUsM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutUsMMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(AboutUsM);
 
         ContactUsM.setText("CONTACT US");
         ContactUsM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         ContactUsM.setPreferredSize(new java.awt.Dimension(384, 24));
+        ContactUsM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ContactUsMMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(ContactUsM);
 
         setJMenuBar(jMenuBar1);
@@ -139,6 +166,38 @@ public class ContactUs extends javax.swing.JFrame {
     private void SendFeedbackBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFeedbackBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SendFeedbackBActionPerformed
+
+    private void HomeMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new home().setVisible(true);
+    }//GEN-LAST:event_HomeMMouseClicked
+
+    private void SearchMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchMMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new SearchRoomUI().setVisible(true);
+
+    }//GEN-LAST:event_SearchMMouseClicked
+
+    private void MyProfileMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyProfileMMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new withback().setVisible(true);
+
+    }//GEN-LAST:event_MyProfileMMouseClicked
+
+    private void AboutUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new AboutUs().setVisible(true);
+    }//GEN-LAST:event_AboutUsMMouseClicked
+
+    private void ContactUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactUsMMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ContactUs().setVisible(true);
+    }//GEN-LAST:event_ContactUsMMouseClicked
 
     /**
      * @param args the command line arguments

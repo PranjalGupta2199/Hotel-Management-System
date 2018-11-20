@@ -46,17 +46,6 @@ public class SearchResultsUI extends javax.swing.JFrame {
         resultPanel = new javax.swing.JPanel();
         displayPanel = new javax.swing.JPanel();
         displayLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         payementButton = new javax.swing.JButton();
         bckgLabel = new javax.swing.JLabel();
@@ -73,63 +62,29 @@ public class SearchResultsUI extends javax.swing.JFrame {
         resultPanel.setLayout(null);
 
         displayPanel.setBackground(new java.awt.Color(204, 255, 0));
-        displayPanel.setLayout(null);
 
         displayLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         displayLabel.setText("THESE ARE THE AVAILABLE HOTELS : ");
-        displayPanel.add(displayLabel);
-        displayLabel.setBounds(12, 13, 1036, 42);
 
-        jLabel1.setText("jLabel1");
-        jLabel1.setOpaque(true);
-        displayPanel.add(jLabel1);
-        jLabel1.setBounds(550, 110, 480, 280);
-
-        jLabel2.setText("jLabel1");
-        jLabel2.setOpaque(true);
-        displayPanel.add(jLabel2);
-        jLabel2.setBounds(50, 420, 480, 290);
-
-        jButton4.setText("jButton1");
-        displayPanel.add(jButton4);
-        jButton4.setBounds(330, 340, 140, 50);
-
-        jLabel3.setText("jLabel1");
-        jLabel3.setOpaque(true);
-        displayPanel.add(jLabel3);
-        jLabel3.setBounds(550, 420, 480, 290);
-
-        jButton1.setText("jButton1");
-        displayPanel.add(jButton1);
-        jButton1.setBounds(600, 250, 140, 50);
-
-        jCheckBox1.setText("jCheckBox1");
-        displayPanel.add(jCheckBox1);
-        jCheckBox1.setBounds(80, 260, 93, 25);
-
-        jCheckBox2.setText("jCheckBox2");
-        displayPanel.add(jCheckBox2);
-        jCheckBox2.setBounds(80, 290, 93, 25);
-
-        jLabel5.setText("jLabel5");
-        jLabel5.setOpaque(true);
-        displayPanel.add(jLabel5);
-        jLabel5.setBounds(80, 190, 240, 50);
-
-        jButton2.setText("jButton2");
-        displayPanel.add(jButton2);
-        jButton2.setBounds(70, 340, 160, 50);
-
-        jLabel4.setOpaque(true);
-        displayPanel.add(jLabel4);
-        jLabel4.setBounds(40, 110, 480, 290);
-
-        jButton3.setText("jButton1");
-        displayPanel.add(jButton3);
-        jButton3.setBounds(830, 240, 140, 50);
+        javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
+        displayPanel.setLayout(displayPanelLayout);
+        displayPanelLayout.setHorizontalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        displayPanelLayout.setVerticalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(715, Short.MAX_VALUE))
+        );
 
         resultPanel.add(displayPanel);
-        displayPanel.setBounds(230, 80, 1060, 770);
+        displayPanel.setBounds(410, 80, 1060, 770);
 
         backButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         backButton.setText("BACK");
@@ -181,12 +136,22 @@ public class SearchResultsUI extends javax.swing.JFrame {
         aboutMenu.setToolTipText("Get to know more about our sites and other services");
         aboutMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         aboutMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        aboutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(aboutMenu);
 
         contactMenu.setText("CONTACT US");
         contactMenu.setToolTipText("Contact informtation");
         contactMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         contactMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        contactMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(contactMenu);
 
         setJMenuBar(menuBar);
@@ -221,6 +186,18 @@ public class SearchResultsUI extends javax.swing.JFrame {
         this.dispose();
         new ModeOfPayment().setVisible(true);       
     }//GEN-LAST:event_payementButtonMouseClicked
+
+    private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new AboutUs().setVisible(true);
+    }//GEN-LAST:event_aboutMenuMouseClicked
+
+    private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ContactUs().setVisible(true);
+    }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,17 +242,6 @@ public class SearchResultsUI extends javax.swing.JFrame {
     private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JMenu homeMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton payementButton;
     private javax.swing.JMenu profileMenu;

@@ -118,12 +118,22 @@ public class home extends javax.swing.JFrame {
         aboutMenu.setToolTipText("Get to know more about our sites and other services");
         aboutMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         aboutMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        aboutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(aboutMenu);
 
         contactMenu.setText("CONTACT US");
         contactMenu.setToolTipText("Contact informtation");
         contactMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         contactMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        contactMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(contactMenu);
 
         setJMenuBar(menuBar);
@@ -154,6 +164,18 @@ public class home extends javax.swing.JFrame {
         this.dispose();
         new SearchRoomUI().setVisible(true);
     }//GEN-LAST:event_searchMenuMouseClicked
+
+    private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new AboutUs().setVisible(true);
+    }//GEN-LAST:event_aboutMenuMouseClicked
+
+    private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ContactUs().setVisible(true);
+    }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
      * @param args the command line arguments

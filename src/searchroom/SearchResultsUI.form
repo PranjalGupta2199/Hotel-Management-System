@@ -60,6 +60,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="aboutMenuMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="contactMenu">
           <Properties>
@@ -72,6 +75,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="contactMenuMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

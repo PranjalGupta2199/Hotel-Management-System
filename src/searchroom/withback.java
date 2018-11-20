@@ -184,12 +184,22 @@ public class withback extends javax.swing.JFrame {
         aboutMenu.setText("ABOUT US");
         aboutMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         aboutMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        aboutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(aboutMenu);
         aboutMenu.getAccessibleContext().setAccessibleDescription("Get to know more about our sites and other services");
 
         contactMenu.setText("CONTACT US");
         contactMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         contactMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        contactMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(contactMenu);
         contactMenu.getAccessibleContext().setAccessibleDescription("Contact Information");
 
@@ -225,6 +235,18 @@ public class withback extends javax.swing.JFrame {
     private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_profileMenuMouseClicked
+
+    private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new AboutUs().setVisible(true);
+    }//GEN-LAST:event_aboutMenuMouseClicked
+
+    private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ContactUs().setVisible(true);
+    }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
      * @param args the command line arguments

@@ -20,6 +20,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HomeMMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="SearchM">
           <Properties>
@@ -31,6 +34,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SearchMMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MyProfileM">
           <Properties>
@@ -42,6 +48,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MyProfileMMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="AboutUsM">
           <Properties>
@@ -53,6 +62,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AboutUsMMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="ContactUsM">
           <Properties>
@@ -64,6 +76,9 @@
               <Dimension value="[384, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ContactUsMMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

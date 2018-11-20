@@ -123,7 +123,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         jLabel1.setBounds(110, 380, 220, 40);
 
         locationComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal" }));
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal", "Kolkata" }));
         locationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationComboBoxActionPerformed(evt);
@@ -194,12 +194,22 @@ public class SearchRoomUI extends javax.swing.JFrame {
         aboutMenu.setToolTipText("Get to know more about our sites and other services");
         aboutMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         aboutMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        aboutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(aboutMenu);
 
         contactMenu.setText("CONTACT US");
         contactMenu.setToolTipText("Contact informtation");
         contactMenu.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         contactMenu.setPreferredSize(new java.awt.Dimension(384, 24));
+        contactMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(contactMenu);
 
         setJMenuBar(menuBar);
@@ -317,6 +327,18 @@ public class SearchRoomUI extends javax.swing.JFrame {
         this.dispose();
         new home().setVisible(true);
     }//GEN-LAST:event_homeMenuMouseClicked
+
+    private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new AboutUs().setVisible(true);
+    }//GEN-LAST:event_aboutMenuMouseClicked
+
+    private void contactMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMenuMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ContactUs().setVisible(true);
+    }//GEN-LAST:event_contactMenuMouseClicked
 
     /**
      * @param args the command line arguments
