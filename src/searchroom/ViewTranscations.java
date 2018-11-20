@@ -6,6 +6,7 @@
 package searchroom;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.*;
+import java.util.*;
 
 
 /**
@@ -35,20 +36,16 @@ public class ViewTranscations extends javax.swing.JFrame {
     
     private void displayTransactions(String Username){
         Cursor conn = new Cursor();
-        String transactions[][];
+        ArrayList<ArrayList<String>> transactions;
         transactions = conn.getTransactions(Username);
         DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
 
         
-        for (int i = 0; i < 20; i++ ){
-            String row[];
-            row = transactions[i];
-            /*for (int j = 0; j < 7; j++) {
-                System.out.print(row[j]);
-                System.out.println();
-            }*/
-            
-            model.insertRow(i, row);
+        for (int i = 0; i < transactions.size(); i++ ){
+            ArrayList<String> row;
+            row = transactions.get(i);
+            Object input_row [] = {Boolean.valueOf(row.get(0)), row.get(1), row.get(2), row.get(3), row.get(4),row.get(5), row.get(6),row.get(7),row.get(8)};
+            model.insertRow(i, input_row);
         }
       
         
@@ -63,8 +60,8 @@ public class ViewTranscations extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         bookingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        modifyButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -79,45 +76,24 @@ public class ViewTranscations extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 102));
 
+        bookingTable.setRowSelectionAllowed(true);
+        bookingTable.setColumnSelectionAllowed(false);
         bookingTable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JTableHeader header = bookingTable.getTableHeader();
         header.setFont( header.getFont().deriveFont(24) );
         bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Location", "Hotel Name", "From Date", "To Date", "Total Rooms", "Total Guests", "Cost"
+                "", "Ref Number", "Location", "Hotel Name", "From Date", "To Date", "Total Rooms", "Total Guests", "Cost"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,28 +104,37 @@ public class ViewTranscations extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        bookingTable.setColumnSelectionAllowed(true);
         bookingTable.setRowHeight(30);
+        bookingTable.getTableHeader().setReorderingAllowed(false);
+        bookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookingTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(bookingTable);
-        bookingTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (bookingTable.getColumnModel().getColumnCount() > 0) {
-            bookingTable.getColumnModel().getColumn(6).setPreferredWidth(25);
+            bookingTable.getColumnModel().getColumn(8).setPreferredWidth(25);
         }
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("YOUR BOOKING HISTORY ");
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("CANCEL BOOKING");
+        cancelButton.setBackground(new java.awt.Color(255, 0, 0));
+        cancelButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cancelButton.setText("CANCEL BOOKING");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 51));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("MODIFY BOOKING");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        modifyButton.setBackground(new java.awt.Color(255, 255, 51));
+        modifyButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        modifyButton.setText("MODIFY BOOKING");
+        modifyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modifyButtonMouseClicked(evt);
+            }
+        });
+        modifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                modifyButtonActionPerformed(evt);
             }
         });
 
@@ -166,9 +151,9 @@ public class ViewTranscations extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(235, 235, 235)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(modifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -180,8 +165,8 @@ public class ViewTranscations extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                    .addComponent(modifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
 
@@ -287,9 +272,26 @@ public class ViewTranscations extends javax.swing.JFrame {
         new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_contactMenuMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_modifyButtonActionPerformed
+
+    private void bookingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingTableMouseClicked
+        // TODO add your handling code here:
+        int index = bookingTable.getSelectedRow();
+        
+        TableModel model = bookingTable.getModel();
+        for (int i = 0; i < model.getRowCount(); i++){
+            if (i != index) model.setValueAt(false,i, 0);
+        }
+        
+    }//GEN-LAST:event_bookingTableMouseClicked
+
+    private void modifyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyButtonMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_modifyButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -330,15 +332,15 @@ public class ViewTranscations extends javax.swing.JFrame {
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JPanel bookingPanel;
     private javax.swing.JTable bookingTable;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JMenu contactMenu;
     private javax.swing.JMenu homeMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton modifyButton;
     private javax.swing.JMenu profileMenu;
     private javax.swing.JMenu searchMenu;
     // End of variables declaration//GEN-END:variables

@@ -19,12 +19,13 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.sql.*;
+import java.util.*;
 
 public class Cursor {
 
-    public String[][] getTransactions(String Username){
+    public ArrayList<ArrayList<String>> getTransactions(String Username){
         Connection conn = null;
-        String[][] resultArray = new String[2000][7];
+        ArrayList<ArrayList<String>> resultArray = new ArrayList<ArrayList<String>>();
 
         try {
             String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
@@ -34,26 +35,27 @@ public class Cursor {
             String query = "select * from GuestData";
             ResultSet rst = stmt.executeQuery(query);
             
-            int counter = 0;
             
             while (rst.next()){
                 if (rst.getString("Username").equals(Username) == true) {
-                    String temp[] = new String[7];
-                    temp[0] = rst.getString(1);
-                    temp[1] = rst.getString(2);
-                    temp[2] = rst.getString(4);
-                    temp[3] = rst.getString(5);
-                    temp[4] = rst.getString(6);
-                    temp[5] = rst.getString(7);
-                    temp[6] = rst.getString(9);
+                    ArrayList<String> temp = new ArrayList<String>();
+                    temp.add("false");
+                    temp.add(rst.getString(8));
+                    temp.add(rst.getString(1));
+                    temp.add(rst.getString(2));
+                    temp.add(rst.getString(4));
+                    temp.add(rst.getString(5));
+                    temp.add(rst.getString(6));
+                    temp.add(rst.getString(7));
+                    temp.add(rst.getString(9));
                 
-                    resultArray[counter] = temp;
-                    counter ++;
-                    System.out.println(counter);
+                    resultArray.add(temp);
                 
                 }
                 
             }
+            
+            
         }
         catch(SQLException e){
             System.out.println(e.getMessage());

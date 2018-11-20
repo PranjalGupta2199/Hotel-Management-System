@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <Properties>
@@ -153,9 +153,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="365" max="-2" attributes="0"/>
+                              <Component id="cancelButton" min="-2" pref="365" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="358" max="-2" attributes="0"/>
+                              <Component id="modifyButton" min="-2" pref="358" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -171,8 +171,8 @@
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton1" pref="76" max="32767" attributes="0"/>
-                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="cancelButton" pref="76" max="32767" attributes="0"/>
+                          <Component id="modifyButton" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -193,7 +193,9 @@
                       <Font name="Tahoma" size="18" style="1"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="24">
+                      <Table columnCount="9" rowCount="0">
+                        <Column editable="true" title="" type="java.lang.Boolean"/>
+                        <Column editable="false" title="Ref Number" type="java.lang.String"/>
                         <Column editable="false" title="Location" type="java.lang.String"/>
                         <Column editable="false" title="Hotel Name" type="java.lang.String"/>
                         <Column editable="false" title="From Date" type="java.lang.String"/>
@@ -204,7 +206,17 @@
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="1">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -242,12 +254,17 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                     <Property name="rowHeight" type="int" value="30"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bookingTableMouseClicked"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="bookingTable.setRowSelectionAllowed(true);&#xa;bookingTable.setColumnSelectionAllowed(false);"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -260,7 +277,7 @@
                 <Property name="text" type="java.lang.String" value="YOUR BOOKING HISTORY "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="cancelButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -271,7 +288,7 @@
                 <Property name="text" type="java.lang.String" value="CANCEL BOOKING"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="modifyButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="ff" red="ff" type="rgb"/>
@@ -282,7 +299,8 @@
                 <Property name="text" type="java.lang.String" value="MODIFY BOOKING"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="modifyButtonMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
