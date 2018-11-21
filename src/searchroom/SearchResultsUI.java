@@ -352,6 +352,8 @@ public class SearchResultsUI extends javax.swing.JFrame {
             insert_array[7] = Integer.toString(ThreadLocalRandom.current().nextInt(1000, 2500 + 1));
             //insert_array[8] = Integer.toString((Integer)(model.getValueAt(index, 2))*rooms_ref);
             insert_array[8] = (String)(model.getValueAt(index, 2));
+            
+            for (int i = 0; i < 4; i++) System.out.println(availabilityC[i]);
             if(availabilityC[index] == false)
             {
                 System.out.println("acheck");

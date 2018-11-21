@@ -349,7 +349,7 @@ public class ModeOfPayment extends javax.swing.JFrame {
                     //SearchResultsUI1 makepayment = new SearchResultsUI1 ();
                     //int randomNum = makepayment.addToDB();
                     
-                    String query = "Insert into 'GuestData' Values('"+insert_array[0]+"','"+insert_array[1]+"','"+insert_array[2]+"','"+insert_array[3]+"','"+insert_array[4]+"','"+insert_array[5]+"','"+insert_array[6]+"','"+insert_array[7]+"','"+insert_array[8]+"')";
+                    String query = "Insert into 'GuestData' Values('"+insert_array[0]+"','"+insert_array[1]+"','"+insert_array[2]+"','"+insert_array[3]+"','"+insert_array[4]+"','"+insert_array[5]+"','"+insert_array[6]+"','"+insert_array[7]+"','"+amount+"')";
                     conn.insert(query);
                     
                     this.setVisible(false);
