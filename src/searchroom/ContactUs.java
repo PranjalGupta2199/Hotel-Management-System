@@ -5,6 +5,7 @@
  */
 package searchroom;
 
+import javax.swing.JOptionPane;
 import static searchroom.home.Username;
 
 /**
@@ -41,8 +42,12 @@ public class ContactUs extends javax.swing.JFrame {
         FNameTf = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        FeedbackTf = new javax.swing.JTextArea();
         SendFeedbackB = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        RatingT = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        ContactUsCB = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         HomeM = new javax.swing.JMenu();
@@ -70,34 +75,62 @@ public class ContactUs extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setText("Name :");
         MoreP.add(jLabel3);
-        jLabel3.setBounds(250, 120, 260, 70);
+        jLabel3.setBounds(130, 100, 260, 70);
 
         FNameTf.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         MoreP.add(FNameTf);
-        FNameTf.setBounds(680, 110, 330, 80);
+        FNameTf.setBounds(650, 100, 330, 70);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setText("Your Feedback :");
         MoreP.add(jLabel5);
-        jLabel5.setBounds(250, 220, 420, 80);
+        jLabel5.setBounds(140, 460, 420, 80);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        FeedbackTf.setColumns(20);
+        FeedbackTf.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        FeedbackTf.setRows(5);
+        jScrollPane1.setViewportView(FeedbackTf);
 
         MoreP.add(jScrollPane1);
-        jScrollPane1.setBounds(680, 230, 450, 270);
+        jScrollPane1.setBounds(650, 420, 450, 270);
 
         SendFeedbackB.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         SendFeedbackB.setText("Send Feedback");
+        SendFeedbackB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SendFeedbackBMouseClicked(evt);
+            }
+        });
         SendFeedbackB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SendFeedbackBActionPerformed(evt);
             }
         });
         MoreP.add(SendFeedbackB);
-        SendFeedbackB.setBounds(470, 670, 490, 70);
+        SendFeedbackB.setBounds(390, 710, 490, 70);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText("Rating :");
+        MoreP.add(jLabel2);
+        jLabel2.setBounds(130, 310, 230, 70);
+
+        RatingT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RatingTKeyTyped(evt);
+            }
+        });
+        MoreP.add(RatingT);
+        RatingT.setBounds(650, 310, 330, 80);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setText("Hotel :");
+        MoreP.add(jLabel4);
+        jLabel4.setBounds(130, 190, 250, 70);
+
+        ContactUsCB.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ContactUsCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clairon Hotel", "The Mount Regency", "Liberty Park", "MGM Beach Resorts", "Delhi Empire Dx", "Radisson Hotel", "Grand Heritage Resort", "Sri Sri Residency", "The LaLit", "Mango Hotel", "Indana Palace", "Souvenir Prime", "The Ambassador", "Parle International", "The Oriental Residency", "Golden Chariot", "Noor-Us-Subah Palace", "Jehanuma Palace", "Shalimar Deluxe", "Golden Lakes Hotel" }));
+        MoreP.add(ContactUsCB);
+        ContactUsCB.setBounds(650, 200, 330, 60);
 
         AboutUsP.add(MoreP);
         MoreP.setBounds(310, 70, 1450, 800);
@@ -169,40 +202,55 @@ public class ContactUs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SendFeedbackBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFeedbackBActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_SendFeedbackBActionPerformed
 
     private void HomeMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMMouseClicked
-        // TODO add your handling code here:
+     
         this.dispose();
         new home(Username).setVisible(true);
     }//GEN-LAST:event_HomeMMouseClicked
 
     private void SearchMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchMMouseClicked
-        // TODO add your handling code here:
+        
         this.dispose();
         new SearchRoomUI(Username).setVisible(true);
 
     }//GEN-LAST:event_SearchMMouseClicked
 
     private void MyProfileMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyProfileMMouseClicked
-        // TODO add your handling code here:
+        
         this.dispose();
         new withback(Username).setVisible(true);
 
     }//GEN-LAST:event_MyProfileMMouseClicked
 
     private void AboutUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMMouseClicked
-        // TODO add your handling code here:
+        
         this.dispose();
         new AboutUs(Username).setVisible(true);
     }//GEN-LAST:event_AboutUsMMouseClicked
 
     private void ContactUsMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactUsMMouseClicked
-        // TODO add your handling code here:
+        
         this.dispose();
         new ContactUs(Username).setVisible(true);
     }//GEN-LAST:event_ContactUsMMouseClicked
+
+    private void RatingTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RatingTKeyTyped
+                
+                
+                    
+       
+    }//GEN-LAST:event_RatingTKeyTyped
+
+    private void SendFeedbackBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SendFeedbackBMouseClicked
+        Cursor c = new Cursor();
+        c.insertinfo(FNameTf.getText(), FeedbackTf.getText());
+        System.out.println(ContactUsCB.getSelectedItem().toString());
+        c.Rating_Update(RatingT.getText(),ContactUsCB.getSelectedItem().toString());
+         JOptionPane.showMessageDialog(null, "Thank you for your feedback");
+    }//GEN-LAST:event_SendFeedbackBMouseClicked
 
     /**
      * @param args the command line arguments
@@ -242,19 +290,23 @@ public class ContactUs extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AboutUsM;
     private javax.swing.JPanel AboutUsP;
+    private javax.swing.JComboBox<String> ContactUsCB;
     private javax.swing.JMenu ContactUsM;
     private javax.swing.JTextField FNameTf;
+    private javax.swing.JTextArea FeedbackTf;
     private javax.swing.JMenu HomeM;
     private javax.swing.JPanel MoreP;
     private javax.swing.JMenu MyProfileM;
+    private javax.swing.JTextField RatingT;
     private javax.swing.JMenu SearchM;
     private javax.swing.JButton SendFeedbackB;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,13 +55,21 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="182" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="506" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButton3" min="-2" pref="206" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="resetButton" min="-2" pref="252" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="signUpButton" min="-2" pref="216" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -83,7 +91,7 @@
                                           <Component id="contactLabel" min="-2" pref="175" max="-2" attributes="0"/>
                                           <Component id="dobLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="26" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="confirmPassword" max="32767" attributes="0"/>
                                           <Component id="contactText" max="32767" attributes="0"/>
@@ -94,12 +102,6 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="resetButton" min="-2" pref="330" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="signUpButton" min="-2" pref="332" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -146,9 +148,10 @@
                           <Component id="jScrollPane2" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="resetButton" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="signUpButton" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" max="-2" attributes="0">
+                          <Component id="signUpButton" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="resetButton" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="jButton3" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="52" max="32767" attributes="0"/>
                   </Group>
@@ -242,6 +245,9 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Enter a valid contact number"/>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contactTextKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="usernameText">
               <Properties>
@@ -261,6 +267,9 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="DD/MM/YYYY"/>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="dobTextKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="emailText">
               <Properties>
@@ -309,6 +318,17 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="signUpButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Georgia" size="36" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="BACK"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

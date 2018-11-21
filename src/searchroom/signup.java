@@ -5,11 +5,13 @@
  */
 package searchroom;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import static searchroom.SearchResultsUI.Username;
 
 /**
  *
@@ -57,6 +59,7 @@ public class signup extends javax.swing.JFrame {
         addressText = new javax.swing.JTextArea();
         resetButton = new javax.swing.JButton();
         signUpButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,6 +99,11 @@ public class signup extends javax.swing.JFrame {
 
         contactText.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         contactText.setToolTipText("Enter a valid contact number");
+        contactText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contactTextKeyTyped(evt);
+            }
+        });
 
         usernameText.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         usernameText.setToolTipText("Enter a Username");
@@ -107,6 +115,11 @@ public class signup extends javax.swing.JFrame {
 
         dobText.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         dobText.setToolTipText("DD/MM/YYYY");
+        dobText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dobTextKeyTyped(evt);
+            }
+        });
 
         emailText.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         emailText.setToolTipText("Enter a valid Email-ID");
@@ -133,17 +146,32 @@ public class signup extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jButton3.setText("BACK");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout signUpPanelLayout = new javax.swing.GroupLayout(signUpPanel);
         signUpPanel.setLayout(signUpPanelLayout);
         signUpPanelLayout.setHorizontalGroup(
             signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, signUpPanelLayout.createSequentialGroup()
-                .addGap(0, 182, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(182, 182, 182))
             .addGroup(signUpPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(signUpPanelLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
                     .addGroup(signUpPanelLayout.createSequentialGroup()
                         .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(signUpPanelLayout.createSequentialGroup()
@@ -161,19 +189,14 @@ public class signup extends javax.swing.JFrame {
                                     .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(contactLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dobLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(confirmPassword)
                                     .addComponent(contactText)
                                     .addComponent(dobText)
                                     .addComponent(emailText)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))))
-                        .addGap(99, 99, 99))
-                    .addGroup(signUpPanelLayout.createSequentialGroup()
-                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))))
+                        .addGap(99, 99, 99))))
         );
         signUpPanelLayout.setVerticalGroup(
             signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,9 +232,10 @@ public class signup extends javax.swing.JFrame {
                     .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -243,7 +267,7 @@ public class signup extends javax.swing.JFrame {
     private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
 
         Cursor conn = new Cursor();
-        if(usernameText.getText().isEmpty()||passwordField.getText().isEmpty()||confirmPassword.getText().isEmpty()||contactText.getText().isEmpty()||emailText.getText().isEmpty()){
+        if(usernameText.getText().isEmpty()||passwordField.getText().isEmpty()||confirmPassword.getText().isEmpty()||contactText.getText().isEmpty()||emailText.getText().isEmpty() || addressText.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "All the fields are not present");
         }
         else{
@@ -289,6 +313,33 @@ public class signup extends javax.swing.JFrame {
         emailText.setText("");
         addressText.setText("");
     }//GEN-LAST:event_resetButtonMouseClicked
+
+    private void contactTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactTextKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        if (!(Character.isDigit(vchar))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_contactTextKeyTyped
+
+    private void dobTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dobTextKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        if ((!(Character.isDigit(vchar)) && !(vchar == KeyEvent.VK_MINUS))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)   ){            
+            evt.consume();
+        }
+    }//GEN-LAST:event_dobTextKeyTyped
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+                        this.dispose();
+                        new AppStart().setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
     
      private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
@@ -380,6 +431,7 @@ public class signup extends javax.swing.JFrame {
     private javax.swing.JTextField dobText;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;

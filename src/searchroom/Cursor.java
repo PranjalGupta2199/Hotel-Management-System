@@ -23,6 +23,157 @@ import java.util.*;
 
 public class Cursor {
 
+    public void update_waitTable(String Username, String location, String hotelName){
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            String query = "select * from waitList where Location = '"+location+"' and HotelName = '"+hotelName+"'";
+            ResultSet rst = stmt.executeQuery(query);
+            while (rst.next()){
+                int pref = Integer.parseInt(rst.getString(10));
+                String Location = rst.getString(1);
+                String HotelName = rst.getString(2);
+                String UserID = rst.getString(3);
+                String FromDate = rst.getString(4);
+                String ToDate = rst.getString(5);
+                String Rooms = rst.getString(6);
+                String Guests = rst.getString(7);
+                String RefNumber = rst.getString(8);
+                String Cost = rst.getString(9);
+                
+                
+                System.out.println(pref);
+                if (pref == 1){ 
+                    conn.close();
+                    Connection c1 = null;
+                    Statement updateQuery = (Statement) c1.createStatement();
+                    String url1 = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+                    c1 = DriverManager.getConnection(url1);
+                    
+                    String u_query = "delete from 'waitList' where Location = '"+location+"' and hotelName = '"+hotelName+"' and Preference = '"+Integer.toString(pref)+"'";
+                    try{
+                        updateQuery.executeUpdate(u_query);
+                    }
+                    catch(SQLException e){
+                        c1.close();
+                        System.out.println("catch !!!!!!!");
+                    }
+                    System.out.println(rst.getString("Location"));
+                    String insert_query = "insert into 'GuestData' (Location, HotelName, UserID, FromDate, ToDate, Rooms, Guests, RefNumber, Cost)values ('"+Location+"', '"+HotelName+"', '"+UserID+"', '"+FromDate+"', '"+ToDate+"', '"+Rooms+"', '"+Guests+"', '"+RefNumber+"', '"+Cost+"')";
+                    try{
+                        insert(insert_query);
+                    }
+                    catch(Exception e){
+                        System.out.println("catch !!!!!!!");
+                    }
+                    break;
+                }
+                else {
+                    pref --;
+                    String u_query = "update 'waitList' Preference = '"+Integer.toString(pref)+"' where Location = '"+location+"' and HotelName = '"+hotelName+"'";
+                    Statement stmt1 = (Statement) conn.createStatement();
+                    try{
+                        stmt1.executeUpdate(u_query);
+                    }
+                    catch(Exception e){
+                        System.out.println("catch !!!!!!!");
+                    }
+                }
+                
+            }
+            //conn.close();
+            //System.out.println("closed");
+        }
+        catch(SQLException e){
+            System.out.println("bahar wala");
+            e.printStackTrace();
+        }   
+    
+    }
+
+    public void Rating_Update(String rating,String name){
+        Connection conn = null;
+        try {
+            String name1="";
+            String name2="";
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            //String query = "select * from SignUp where 'Username' = '"+Username+"'";
+            String query = "select * from HotelData where Name = '"+name+"'";
+            ResultSet rst = stmt.executeQuery(query);
+            while(rst.next()){
+                 name1= rst.getString("TotalReviews");
+                 name2 = rst.getString("Rating");                
+            }          
+            String var1 = Float.toString((((Float.parseFloat(name1))*(Float.parseFloat(name2)))+(Float.parseFloat(rating)))/((Float.parseFloat(name1))+1));
+            String var2=Float.toString(Float.parseFloat(name1)+1);
+            String query4 = "update HotelData set Rating = '"+var1+"', TotalReviews = '"+var2+"' where Name = '"+name+"'";
+            
+
+      
+            stmt.executeUpdate(query4);
+            //stmt.executeUpdate(query);
+            }catch(SQLException e){                
+            }
+    }
+    public void insertinfo(String name,String feedback){
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            //String query = "select * from SignUp where 'Username' = '"+Username+"'";
+            String query = "insert into 'ContactUs'(Name,Feedback)values('"+name+"','"+feedback+"')";
+            stmt.executeQuery(query);           
+            
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        finally{
+           
+        }
+    }
+    
+    public ArrayList<ArrayList<String>> getWaitData(String Username){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> resultArray = new ArrayList<ArrayList<String>>();
+
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            //String query = "select * from SignUp where 'Username' = '"+Username+"'";
+            String query = "select * from waitList where UserID = '"+Username+"'";
+            ResultSet rst = stmt.executeQuery(query);
+            
+            
+            while (rst.next()){
+                
+                    ArrayList<String> temp = new ArrayList<String>();
+                    
+                    temp.add(rst.getString(1));
+                    temp.add(rst.getString(2));
+                    temp.add(rst.getString(4));
+                    temp.add(rst.getString(5));
+                    temp.add(rst.getString(6));
+                    temp.add(rst.getString(7));
+                    temp.add(rst.getString(8));
+                    temp.add(rst.getString(9));
+                    temp.add(rst.getString(10));
+                    
+                    resultArray.add(temp);
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return resultArray;
+    }
+    
     public void modify_detail(String cost, String ref, String fromDate, String room){
         Connection conn = null;
         try {
