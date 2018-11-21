@@ -70,7 +70,7 @@ public class Cursor {
             
             
             while (rst.next()){
-                if (rst.getString("Username").equals(Username) == true) {
+                if (rst.getString("UserID").equals(Username) == true) {
                     ArrayList<String> temp = new ArrayList<String>();
                     temp.add("false");
                     temp.add(rst.getString(8));
@@ -275,28 +275,19 @@ public class Cursor {
             }
             return reversed;
         } 
-        
-    //SMIT JAIN
-    public static void insert(String query,String noofroomText) {
+
+    public static void insert(String query) {
         Connection conn = null;
         
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:\\Users\\Smit\\Desktop\\Hotel-Management-System-develop\\Data\\dump.sqlite";
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
             // create a connection to the database
             conn = DriverManager.getConnection(url);            
             Statement stmt = conn.createStatement();
             try{
                 ResultSet rs = stmt.executeQuery(query);
             System.out.println("Connection to SQLite has been established.");
-            /*while (rs.next()){
-                //int id = rs.getInt("id");
-                String firstName = rs.getString("Location");
-                String lastName = rs.getString("Name");
-        
-        // print the results
-                System.out.format("%s, %s\n", firstName, lastName);
-                }*/
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -318,45 +309,38 @@ public class Cursor {
             }
         }
     }
-
-    public static void getData(String location) {
-        Connection conn = null;
+    
+    public static String getPref(String query){
         
+         Connection conn = null;
+        int pref=1;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:\\Users\\Smit\\Desktop\\Hotel-Management-System-develop\\Data\\dump.sqlite";
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
             // create a connection to the database
-            conn = DriverManager.getConnection(url);
-            //PreparedStatement stmt;
+            conn = DriverManager.getConnection(url);            
             Statement stmt = conn.createStatement();
             try{
-                String query = "select * from HotelData where 'Location' = '"+location+"'";
-                //stmt = conn.prepareStatement(query);
-                //int result = stmt.executeUpdate();
-                //System.out.println(result);
                 ResultSet rs = stmt.executeQuery(query);
             System.out.println("Connection to SQLite has been established.");
             while (rs.next()){
-                System.out.println("chalja");
                 //int id = rs.getInt("id");
-                String Name = rs.getString("Name");
-                int roomCost = rs.getInt("Room cost");
-                float ratings = rs.getFloat("Rating");
+                
+                 pref+=1;
+        
         // print the results
-                System.out.println(Name + ratings+ roomCost);
+                
                 }
             }
             catch (Exception e){
-                System.out.println("hio");
                 System.out.println(e.getMessage());
             }
  
             finally{
-                //stmt.close();
+                stmt.close();
             }
             
         } catch (SQLException e) {
-            System.out.println("poi");
             System.out.println(e.getMessage());
         } finally {
             try {
@@ -367,10 +351,72 @@ public class Cursor {
                 System.out.println(ex.getMessage());
             }
         }
+        return Integer.toString(pref);
     }
-
+        
+        
+     
+   
     
     
+    public String[][] getData(String location) {
+        Connection conn = null;
+        
+        String [][] resultArray = new String[4][9];
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            //PreparedStatement stmt;
+            Statement stmt = conn.createStatement();
+            try{
+                //String query = "select distinct Name,Cost,Rating,Reviews,WiFi,Breakfast,CarRentals,Toiletries from 'HotelData' where Location = '"+location+"'";
+                String query = "select distinct * from 'HotelData' where Location = '"+location+"'";
+                
+                ResultSet rs = stmt.executeQuery(query);
+                int counter = 0;
+                while (rs.next()){
+                    String [] temp = new String[9];
+                    temp[0] = "false";
+                    temp[1] = rs.getString(2);
+                    temp[2] = rs.getString(3);
+                    temp[3] = rs.getString(5);
+                    temp[4] = rs.getString(6);
+                    temp[5] = rs.getString(7);
+                    temp[6] = rs.getString(8);
+                    temp[7] = rs.getString(9);
+                    temp[8] = rs.getString(10);
+                    
+                    resultArray[counter] = temp;
+                    counter ++;
+                }
+                
+            }
+            catch (Exception e){
+                
+                System.out.println(e.getMessage());
+            }
+ 
+            finally{
+                stmt.close();
+            }
+            
+        } catch (SQLException e) {
+            
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return resultArray;
+    }
+        
     public static boolean[] roomCount(String query,String noofroomText) {
         Connection conn = null;        
          int[][] roomcount = new int[4][60];
@@ -379,7 +425,7 @@ public class Cursor {
                         roomcount[i][j] = 150;
                     }
                 }
-            boolean [] availabilityCheck = new  boolean [4];    
+               boolean [] availabilityCheck = new  boolean [4];
             for(int y=0;y<4;y++) availabilityCheck[y] = true;
           String[] hotellist = new String[]{"Clairon Hotel","The Mount Regency","Liberty Park","MGM Beach Resorts","Delhi Empire Dx","Radisson Hotel","Grand Heritage Resort",
            "Sri Sri Residency","The LaLit","Mango Hotel","Indana Palace","Souvenir Prime","The Ambassador","Parle International","The Oriental Residency" ,
@@ -387,17 +433,12 @@ public class Cursor {
          
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:\\Users\\Smit\\Desktop\\Hotel-Management-System-develop\\Data\\dump.sqlite";
-            // create a connection to the database
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
             conn = DriverManager.getConnection(url);
-            //if(conn !=  null) System.out.println("hjkl");
             Statement stmt = conn.createStatement();
-            System.out.println(query);
             try{
                 ResultSet rs = stmt.executeQuery(query);
-                //System.out.println("Connection to SQLite has been established.");
                 int counter = 0;
-               //System.out.println(rs.next());
                int noofrooms_int = Integer.parseInt(noofroomText);
                
                 
@@ -405,15 +446,12 @@ public class Cursor {
                    
               
             while (rs.next()){                
-                //int id = rs.getInt("id");
                 String fDate = rs.getString("FromDate");
                 String tDate = rs.getString("ToDate");
                 String hName = rs.getString("HotelName");
-                int noofrooms =rs.getInt("Rooms");
-               //System.out.println(fDate + tDate + hName);
-                
-                int rowno=0;
-                int roomcount_index=0;
+                int noofrooms =rs.getInt("Rooms");       
+                  int rowno=0;
+                  int roomcount_index=0;
                 
                 for(int o=0;o<20;o++){
                     if(hotellist[o].equals(hName) == true){
@@ -421,7 +459,6 @@ public class Cursor {
                         break;
                     }
                 }
-                System.out.println(rowno);
                 int temp = (rowno)%4;
                     if(temp == 1){
                         roomcount_index = 0;                    
@@ -439,7 +476,6 @@ public class Cursor {
                 int f_month = Integer.parseInt(fDate.split("/", 0)[1]);
                 int t_date = Integer.parseInt(tDate.split("/", 0)[0]);
                 int t_month = Integer.parseInt(tDate.split("/", 0)[1]);
-                //int noofrooms = Integer.parseInt(noofrooms_string);
                 int startindex=0;
                 int endindex=0;
                 
@@ -462,14 +498,7 @@ public class Cursor {
                 if(min < noofrooms_int){
                     availabilityCheck[roomcount_index] = false;
                 }
-                
-                    //availabilityCheck[roomcount_index] = true;
-                   /* for(int p=startindex;p<=endindex;p++)
-                    roomcount[roomcount_index][p] -= noofrooms;*/
-                
-                //counter ++ ;
-        // print the results
-                //System.out.format("%s, %s\n", firstName, lastName);
+               
                 }
 
             }
@@ -487,10 +516,7 @@ public class Cursor {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            for(int i=0;i<4;i++)
-            {
-                System.out.print(availabilityCheck[i]);
-            }
+            
             try {
                 if (conn != null) {
                     conn.close();
@@ -502,7 +528,10 @@ public class Cursor {
         }
         
         
-    }
+    }        
+
+        
+ 
     public static void main(String args[]){
         String a = "Smit";
         //INSERT INTO GuestData ('Location', 'Hotel Name', 'Account Name') VALUES ('Chennai', 'Clairon Hotel', '"+a+"')

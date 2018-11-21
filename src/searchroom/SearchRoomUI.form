@@ -228,7 +228,7 @@
                 <Property name="text" type="java.lang.String" value="SEARCH"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="displayResults"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchButtondisplayResults"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -288,13 +288,12 @@
                   <Font name="Tahoma" size="18" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
+                  <StringArray count="5">
                     <StringItem index="0" value="Mumbai"/>
-                    <StringItem index="1" value="Delhi"/>
+                    <StringItem index="1" value="New Delhi"/>
                     <StringItem index="2" value="Jaipur"/>
                     <StringItem index="3" value="Chennai"/>
                     <StringItem index="4" value="Bhopal"/>
-                    <StringItem index="5" value="Kolkata"/>
                   </StringArray>
                 </Property>
               </Properties>

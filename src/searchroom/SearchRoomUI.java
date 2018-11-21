@@ -4,29 +4,42 @@
  * and open the template in the editor.
  */
 package searchroom;
+
 import javax.swing.JOptionPane;
+import static searchroom.SearchRoomUI.Username;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
-import static searchroom.home.Username;
+import static searchroom.ContactUs.Username;
+import javax.swing.JPanel;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
 /**
  *
- * @author PRANJAL
+ * @author Smit
  */
+/*public class JDateChooser
+extends javax.swing.JPanel
+implements java.awt.event.ActionListener, java.beans.PropertyChangeListener, javax.swing.event.ChangeListener{public java.util.Date getDate(){}}*/
 public class SearchRoomUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form SearchRoomUI
+     * Creates new form SearchRoomUI1
      */
     static String Username;
-    
-    public SearchRoomUI(String name) {
+    public SearchRoomUI() {
+        initComponents();
+        this.setSize(1920,1080);
+        this.setResizable(false);
+    }
+    public SearchRoomUI(String name){
         Username = name;
         initComponents();
         this.setSize(1920,1080);
         this.setResizable(false);
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +113,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         searchButton.setText("SEARCH");
         searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                displayResults(evt);
+                searchButtondisplayResults(evt);
             }
         });
         entryPanel.add(searchButton);
@@ -127,7 +140,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         jLabel1.setBounds(110, 380, 220, 40);
 
         locationComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "Delhi", "Jaipur", "Chennai", "Bhopal", "Kolkata" }));
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mumbai", "New Delhi", "Jaipur", "Chennai", "Bhopal" }));
         locationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationComboBoxActionPerformed(evt);
@@ -232,7 +245,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void displayResults(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayResults
+     /*private void displayResults(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayResults
         // TODO add your handling code here:
         Object l = locationComboBox.getSelectedItem();
         String Location = l.toString();
@@ -275,7 +288,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
                     for(int j=0;j<60;j++){
                         roomCount[i][j] = 150;
                     }
-                }*/
+                }
                 
                 boolean isAvailable[];
                 Cursor c1=new Cursor();
@@ -283,36 +296,20 @@ public class SearchRoomUI extends javax.swing.JFrame {
                 
                 this.setVisible(false);
                 this.dispose();
-                new SearchResultsUI(Username, isAvailable,Location).setVisible(true);
+                new SearchResultsUI(Username,isAvailable,Location).setVisible(true);
             }
        }
         
         
     }//GEN-LAST:event_displayResults
-
-    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
+    */
+    
+    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_locationComboBoxActionPerformed
-
-    private void noofroomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noofroomTextKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        if (!(Character.isDigit(vchar))
-            || (vchar == KeyEvent.VK_BACK_SPACE)
-            || (vchar == KeyEvent.VK_DELETE)){
-        evt.consume();   
-    }
-    }//GEN-LAST:event_noofroomTextKeyTyped
-
-    private void guestTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_guestTextKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        if (!(Character.isDigit(vchar))
-            || (vchar == KeyEvent.VK_BACK_SPACE)
-            || (vchar == KeyEvent.VK_DELETE)){
-        evt.consume();   
-    }        
-    }//GEN-LAST:event_guestTextKeyTyped
+        this.setVisible(false);
+        this.dispose();
+        new home(Username).setVisible(true);
+    }//GEN-LAST:event_homeMenuMouseClicked
 
     private void searchMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMenuMouseClicked
         // TODO add your handling code here:
@@ -325,12 +322,125 @@ public class SearchRoomUI extends javax.swing.JFrame {
         new withback(Username).setVisible(true);
     }//GEN-LAST:event_profileMenuMouseClicked
 
-    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
+    private void guestTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_guestTextKeyTyped
         // TODO add your handling code here:
-        this.setVisible(false);
-        this.dispose();
-        new home(Username).setVisible(true);
-    }//GEN-LAST:event_homeMenuMouseClicked
+        char vchar = evt.getKeyChar();
+        if (!(Character.isDigit(vchar))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_guestTextKeyTyped
+
+    private void searchButtondisplayResults(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtondisplayResults
+        // TODO add your handling code here:
+        Object l = locationComboBox.getSelectedItem();
+        String Location = l.toString();
+
+        int from_date = Integer.parseInt(fromDate.getText().split("/", 0)[0]);
+        int from_month = Integer.parseInt(fromDate.getText().split("/", 0)[1]);
+        int from_year = Integer.parseInt(fromDate.getText().split("/", 0)[2]);
+        int to_date = Integer.parseInt(toDate.getText().split("/", 0)[0]);
+        int to_month = Integer.parseInt(toDate.getText().split("/", 0)[1]);
+        int to_year = Integer.parseInt(toDate.getText().split("/", 0)[2]);
+        int tot_room =0;
+        int tot_guest =0;
+        int counter_adv =0;
+        
+        LocalDateTime now = LocalDateTime.now(); 
+        System.out.println(now);   
+        
+       
+            int curr_date = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[2])) ;
+            int curr_month = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[1]));
+            int curr_year = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[0])) ;
+        
+            int ref_d = curr_date;
+            int ref_m = curr_month;
+            int ref_y =curr_year;
+            
+            try{
+            if(from_year - to_year != 0) throw new Exception();
+            else if(to_year != from_year && to_year !=ref_y)
+                    throw new Exception();
+            else{
+                System.out.println("entred");
+                    if(from_month < 11){
+                        System.out.println("entred1");  
+                        throw new Exception();
+                    }
+                    if(to_month <11){
+                        throw new Exception();
+                    }      
+                    
+                    else{
+                        counter_adv = 1;
+                    }
+            }
+
+            
+            }               
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Sorry,but we have booking facilities only for 2 months in advance!");
+            }
+        int counter_date = 0;
+        int counter_room = 0;
+        try{
+            if (from_year > to_year) throw new Exception();
+            else if (from_month > to_month && from_year == to_year) throw new Exception();
+            else if (from_date > to_date && from_month == to_month && from_year == to_year) throw new Exception();
+           
+            else  counter_date ++;
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Please enter correct check-in and check-out dates");
+        }
+
+        try{
+            tot_room = Integer.parseInt(noofroomText.getText());
+            tot_guest = Integer.parseInt(guestText.getText());
+            if ((tot_room*3 < tot_guest) || (tot_room >150)) throw new Exception();
+            else counter_room ++;
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Accomodation not possible.");
+        }
+        finally{
+            if (counter_date == 1 && counter_room == 1 && counter_adv == 1) {
+                /*int[][] roomCount = new int[4][60];
+                for(int i=0;i<4;i++){
+                    for(int j=0;j<60;j++){
+                        roomCount[i][j] = 150;
+                    }
+                }*/
+
+                boolean isAvailable[];
+                Cursor c1=new Cursor();
+                isAvailable = c1.roomCount("SELECT * FROM 'GuestData' WHERE Location = '"+Location+"'",noofroomText.getText());
+
+                this.setVisible(false);
+                this.dispose();
+                new SearchResultsUI(Username,isAvailable,Location,tot_room,tot_guest,fromDate.getText(),toDate.getText()).setVisible(true);
+            }
+        }
+
+    }//GEN-LAST:event_searchButtondisplayResults
+
+   
+    
+    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationComboBoxActionPerformed
+
+    private void noofroomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noofroomTextKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        if (!(Character.isDigit(vchar))
+            || (vchar == KeyEvent.VK_BACK_SPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_noofroomTextKeyTyped
 
     private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
         // TODO add your handling code here:
@@ -374,7 +484,7 @@ public class SearchRoomUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomUI(Username).setVisible(true);
+                new SearchRoomUI().setVisible(true);
             }
         });
     }
