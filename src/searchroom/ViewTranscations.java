@@ -309,7 +309,14 @@ public class ViewTranscations extends javax.swing.JFrame {
             String fromDate = (String) model.getValueAt(index, 4);
             String toDate = (String) model.getValueAt(index,5);
             String room = (String) model.getValueAt(index, 6);
-            new Modify(ref, fromDate, toDate, room, this, true).setVisible(true);
+            
+            int today = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[2]));
+            System.out.println(java.time.LocalDate.now());
+            if (Integer.parseInt(fromDate.split("/", 0)[0]) - today < 3) JOptionPane.showMessageDialog(null, "Can't modify this booking.Sorry !");
+            else {
+                new Modify(ref, fromDate, toDate, room, this, true).setVisible(true);
+                displayTransactions(Username);
+            }
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Please select a row and then proceed");
@@ -325,9 +332,16 @@ public class ViewTranscations extends javax.swing.JFrame {
         
         try{
             String ref = (String) model.getValueAt(index,1);
-            Cursor conn = new Cursor();
-            conn.delete_row(ref);
-            displayTransactions(Username);
+            int date = Integer.parseInt(((String)model.getValueAt(index,4)).split("/",0)[0]);
+            int today = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[2]));
+            //System.out.println(java.time.LocalDate.now());
+            if (date - today < 3) JOptionPane.showMessageDialog(null, "Can't modify this booking.Sorry !");
+            else {
+                Cursor conn = new Cursor();
+                conn.delete_row(ref);
+                displayTransactions(Username);
+            }
+            
             
         }
         catch(Exception e){

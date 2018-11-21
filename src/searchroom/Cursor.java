@@ -23,6 +23,22 @@ import java.util.*;
 
 public class Cursor {
 
+    public void modify_detail(String ref, String fromDate, String room){
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            String query = "update 'GuestData' set Rooms = '"+room+"', FromDate = '"+fromDate+"' where RefNumber = '"+ref+"'";
+            stmt.executeUpdate(query);
+            conn.close();
+            System.out.println("closed");
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
     public void delete_row(String ref_number){
         System.out.println(ref_number);
         Connection conn = null;
@@ -260,6 +276,7 @@ public class Cursor {
             return reversed;
         } 
         
+    //SMIT JAIN
     public static void insert(String query,String noofroomText) {
         Connection conn = null;
         

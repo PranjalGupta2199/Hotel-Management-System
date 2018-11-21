@@ -25,8 +25,8 @@ public class Modify extends javax.swing.JDialog {
     String room;
     public Modify(String ref, String fromDate, String toDate, String room, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        System.out.println(fromDate);
-        System.out.println(toDate);
+        //System.out.println(fromDate);
+        //System.out.println(toDate);
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Dimension screenSize = toolkit.getScreenSize();
         final int x = (screenSize.width - this.getWidth()) / 2;
@@ -195,14 +195,16 @@ public class Modify extends javax.swing.JDialog {
         if (from_year > to_year) return false;
         else if (from_month > to_month && from_year == to_year) return false;
         else if (from_date > to_date && from_month == to_month && from_year == to_year) return false;
-        return true;
+        else return true;
     }
     private void modifyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyButtonMouseClicked
         // TODO add your handling code here:
-        System.out.println(fromDate.getText());
         
-        if (check_date(from_date, fromDate.getText()) == true && check_date(fromDate.getText(),to_Date) == false ){
-            System.out.println("high");
+        if (check_date(from_date, fromDate.getText()) && check_date(fromDate.getText(),to_Date)){
+            Cursor conn = new Cursor();
+            conn.modify_detail(refNumber.getText(), fromDate.getText(), room);
+            this.dispose();
+            return;
                 
         }
         else {
