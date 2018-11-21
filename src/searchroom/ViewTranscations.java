@@ -6,7 +6,10 @@
 package searchroom;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 import java.util.*;
+import javax.swing.JOptionPane;
+//import JDateChooser;
 
 
 /**
@@ -35,10 +38,14 @@ public class ViewTranscations extends javax.swing.JFrame {
      */
     
     private void displayTransactions(String Username){
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        model.setRowCount(0);
+        
+        System.out.println("called");
         Cursor conn = new Cursor();
         ArrayList<ArrayList<String>> transactions;
         transactions = conn.getTransactions(Username);
-        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        
 
         
         for (int i = 0; i < transactions.size(); i++ ){
@@ -47,6 +54,7 @@ public class ViewTranscations extends javax.swing.JFrame {
             Object input_row [] = {Boolean.valueOf(row.get(0)), row.get(1), row.get(2), row.get(3), row.get(4),row.get(5), row.get(6),row.get(7),row.get(8)};
             model.insertRow(i, input_row);
         }
+        System.out.println("diplayed");
       
         
     }
@@ -123,6 +131,11 @@ public class ViewTranscations extends javax.swing.JFrame {
         cancelButton.setBackground(new java.awt.Color(255, 0, 0));
         cancelButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cancelButton.setText("CANCEL BOOKING");
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseClicked(evt);
+            }
+        });
 
         modifyButton.setBackground(new java.awt.Color(255, 255, 51));
         modifyButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -289,9 +302,40 @@ public class ViewTranscations extends javax.swing.JFrame {
 
     private void modifyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyButtonMouseClicked
         // TODO add your handling code here:
+        int index = bookingTable.getSelectedRow();
+        TableModel model = bookingTable.getModel();
+        try{
+            String ref = (String) model.getValueAt(index, 1);
+            String fromDate = (String) model.getValueAt(index, 4);
+            String toDate = (String) model.getValueAt(index,5);
+            String room = (String) model.getValueAt(index, 6);
+            new Modify(ref, fromDate, toDate, room, this, true).setVisible(true);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please select a row and then proceed");
+        }
         
         
     }//GEN-LAST:event_modifyButtonMouseClicked
+
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        // TODO add your handling code here:
+        int index = bookingTable.getSelectedRow();
+        TableModel model = bookingTable.getModel();
+        
+        try{
+            String ref = (String) model.getValueAt(index,1);
+            Cursor conn = new Cursor();
+            conn.delete_row(ref);
+            displayTransactions(Username);
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please select a row and then proceed");
+        
+        }
+
+    }//GEN-LAST:event_cancelButtonMouseClicked
 
     /**
      * @param args the command line arguments

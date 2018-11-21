@@ -23,6 +23,23 @@ import java.util.*;
 
 public class Cursor {
 
+    public void delete_row(String ref_number){
+        System.out.println(ref_number);
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
+            conn = DriverManager.getConnection(url);
+            Statement stmt = (Statement) conn.createStatement();
+            String query = "delete from 'GuestData' where RefNumber = '"+ref_number+"'";
+            stmt.executeUpdate(query);
+            conn.close();
+            System.out.println("closed");
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public ArrayList<ArrayList<String>> getTransactions(String Username){
         Connection conn = null;
         ArrayList<ArrayList<String>> resultArray = new ArrayList<ArrayList<String>>();
