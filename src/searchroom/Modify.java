@@ -23,7 +23,8 @@ public class Modify extends javax.swing.JDialog {
     String from_date;
     String to_Date;
     String room;
-    public Modify(String ref, String fromDate, String toDate, String room, java.awt.Frame parent, boolean modal) {
+    int cost = 0;
+    public Modify(int cost_per_room, String ref, String fromDate, String toDate, String room, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         //System.out.println(fromDate);
         //System.out.println(toDate);
@@ -41,7 +42,8 @@ public class Modify extends javax.swing.JDialog {
         
         this.room = room;
         from_date = fromDate;
-        to_Date = toDate;    
+        to_Date = toDate;  
+        cost = cost_per_room;
     
     }
 
@@ -200,27 +202,38 @@ public class Modify extends javax.swing.JDialog {
     private void modifyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyButtonMouseClicked
         // TODO add your handling code here:
         
-        if (check_date(from_date, fromDate.getText()) && check_date(fromDate.getText(),to_Date)){
+        /*if ((check_date(from_date, fromDate.getText()) && check_date(fromDate.getText(),to_Date)) && Integer.parseInt(room) <= Integer.parseInt(noofrooms.getText())){
             Cursor conn = new Cursor();
-            conn.modify_detail(refNumber.getText(), fromDate.getText(), room);
+            int total_cost = cost * Integer.parseInt(noofrooms.getText());
+            conn.modify_detail(Integer.toString(total_cost), refNumber.getText(), fromDate.getText(), noofrooms.getText());
             this.dispose();
-            return;
+                
+        }
+        else if (Integer.parseInt(room) > Integer.parseInt(noofrooms.getText()))
+            JOptionPane.showMessageDialog(null, "Please do not select more number of rooms than previously booked.");
+        else if (!(check_date(from_date, fromDate.getText()) && check_date(fromDate.getText(),to_Date))){
+            JOptionPane.showMessageDialog(null, "Please select valid dates.");                
+        }*/
+        if (check_date(from_date, fromDate.getText()) && check_date(fromDate.getText(),to_Date)){
+            if ( Integer.parseInt(room) >= Integer.parseInt(noofrooms.getText())){
+                Cursor conn = new Cursor();
+                int total_cost = cost * Integer.parseInt(noofrooms.getText());
+                conn.modify_detail(Integer.toString(total_cost), refNumber.getText(), fromDate.getText(), noofrooms.getText());
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please do not select more number of rooms than previously booked.");
+            
+            }
                 
         }
         else {
-                JOptionPane.showMessageDialog(null, "Please select valid datss");
-        }
-        try{
-            if (Integer.parseInt(room) >= Integer.parseInt(noofrooms.getText())){
-            
-            }
-            else throw new Exception();
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Please do not select more number of rooms than previously booked.");
-        }
+            JOptionPane.showMessageDialog(null, "Please select valid dates.");                
+        }        
         
-       
+        System.out.println(Integer.parseInt(room));
+        System.out.println(Integer.parseInt(noofrooms.getText()));
+
     }//GEN-LAST:event_modifyButtonMouseClicked
 
        
@@ -254,7 +267,7 @@ public class Modify extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Modify dialog = new Modify("", "", "", "",new javax.swing.JFrame(), true);
+                Modify dialog = new Modify(1, "", "", "", "",new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

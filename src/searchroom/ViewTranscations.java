@@ -311,11 +311,18 @@ public class ViewTranscations extends javax.swing.JFrame {
             String room = (String) model.getValueAt(index, 6);
             
             int today = Integer.parseInt((java.time.LocalDate.now().toString().split("-",0)[2]));
-            System.out.println(java.time.LocalDate.now());
             if (Integer.parseInt(fromDate.split("/", 0)[0]) - today < 3) JOptionPane.showMessageDialog(null, "Can't modify this booking.Sorry !");
+            
             else {
-                new Modify(ref, fromDate, toDate, room, this, true).setVisible(true);
+                int in_cost = Integer.parseInt((String)model.getValueAt(index, 8));
+
+                int cost_per_room = in_cost/ Integer.parseInt(room); //250
+
+                new Modify(cost_per_room, ref, fromDate, toDate, room, this, true).setVisible(true);
                 displayTransactions(Username);
+                int final_cost = cost_per_room* Integer.parseInt((String)model.getValueAt(index,6));
+                
+                JOptionPane.showMessageDialog(null, "Total cost refunded : Rs " + (in_cost - final_cost));
             }
         }
         catch(Exception e){
