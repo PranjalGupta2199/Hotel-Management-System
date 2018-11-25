@@ -23,7 +23,7 @@ import java.util.*;
 
 public class Cursor {
 
-    public void update_waitTable(String Username, String location, String hotelName){
+    /*public void update_waitTable(String Username, String location, String hotelName){
         Connection conn = null;
         try {
             String url = "jdbc:sqlite:C:\\Users\\PRANJAL\\Documents\\NetBeansProjects\\SearchRoom\\Data\\HMS.sqlite";
@@ -91,7 +91,7 @@ public class Cursor {
             e.printStackTrace();
         }   
     
-    }
+    }*/
 
     public void Rating_Update(String rating,String name){
         Connection conn = null;

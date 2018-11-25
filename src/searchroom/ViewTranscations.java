@@ -408,7 +408,7 @@ public class ViewTranscations extends javax.swing.JFrame {
             }
                 Cursor conn = new Cursor();
                 conn.delete_row(ref);
-                conn.update_waitTable(Username, location, hotelName);
+                //conn.update_waitTable(Username, location, hotelName);
                 displayTransactions(Username);
 
             
